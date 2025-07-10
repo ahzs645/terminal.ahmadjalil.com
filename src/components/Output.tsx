@@ -1,7 +1,13 @@
 import About from "./commands/About";
 import Clear from "./commands/Clear";
+import CV from "./commands/CV";
 import Echo from "./commands/Echo";
 import Education from "./commands/Education";
+import Experience from "./commands/Experience";
+import ExperienceDetails from "./commands/ExperienceDetails";
+import Awards from "./commands/Awards";
+import Publications from "./commands/Publications";
+import Volunteer from "./commands/Volunteer";
 import Email from "./commands/Email";
 import GeneralOutput from "./commands/GeneralOutput";
 import Gui from "./commands/Gui";
@@ -23,7 +29,7 @@ type Props = {
 const Output: React.FC<Props> = ({ index, cmd }) => {
   const { arg } = useContext(termContext);
 
-  const specialCmds = ["projects", "socials", "themes", "echo"];
+  const specialCmds = ["projects", "socials", "themes", "echo", "experience-details"];
 
   // return 'Usage: <cmd>' if command arg is not valid
   // eg: about tt
@@ -35,17 +41,23 @@ const Output: React.FC<Props> = ({ index, cmd }) => {
       {
         {
           about: <About />,
+          awards: <Awards />,
           clear: <Clear />,
+          cv: <CV />,
           echo: <Echo />,
           education: <Education />,
           email: <Email />,
+          experience: <Experience />,
+          "experience-details": <ExperienceDetails />,
           gui: <Gui />,
           help: <Help />,
           history: <History />,
           projects: <Projects />,
+          publications: <Publications />,
           pwd: <GeneralOutput>/home/ahzs645</GeneralOutput>,
           socials: <Socials />,
           themes: <Themes />,
+          volunteer: <Volunteer />,
           welcome: <Welcome />,
           whoami: <GeneralOutput>visitor</GeneralOutput>,
         }[cmd]
