@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { EduIntro, EduList } from "../styles/Education.styled";
 import { Wrapper } from "../styles/Output.styled";
-import { getCVData, CVData, formatDateRange } from "../../utils/cvData";
+import { EduIntro, EduList } from "../styles/Education.styled";
+import { getCVData, CVData } from "../../utils/cvData";
 
-const Education: React.FC = () => {
+const Publications: React.FC = () => {
   const [cvData, setCvData] = useState<CVData | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -24,20 +24,20 @@ const Education: React.FC = () => {
 
   if (loading) {
     return (
-      <Wrapper data-testid="education">
-        <EduIntro>Loading education background...</EduIntro>
+      <Wrapper data-testid="publications">
+        <EduIntro>Loading publications...</EduIntro>
       </Wrapper>
     );
   }
 
-  const educationData = cvData?.cv?.sections?.education || [];
+  const publicationsData = cvData?.cv?.sections?.publications || [];
 
   return (
-    <Wrapper data-testid="education">
-      <EduIntro>Here is my education background!</EduIntro>
-      {educationData.map((edu, index) => {
-        const title = `${edu.degree} in ${edu.area}`;
-        const desc = `${edu.institution} | ${formatDateRange(edu.start_date, edu.end_date)}`;
+    <Wrapper data-testid="publications">
+      <EduIntro>Here are my publications!</EduIntro>
+      {publicationsData.map((pub, index) => {
+        const title = pub.title;
+        const desc = `${pub.journal} | ${pub.date}`;
         
         return (
           <EduList key={index}>
@@ -50,4 +50,4 @@ const Education: React.FC = () => {
   );
 };
 
-export default Education;
+export default Publications;
