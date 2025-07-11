@@ -23,29 +23,28 @@ import { argTab } from "../utils/funcs";
 type Command = {
   cmd: string;
   desc: string;
-  tab: number;
 }[];
 
 export const commands: Command = [
-  { cmd: "about", desc: "about Ahmad Jalil", tab: 8 },
-  { cmd: "awards", desc: "view awards and achievements", tab: 7 },
-  { cmd: "clear", desc: "clear the terminal", tab: 8 },
-  { cmd: "cv", desc: "view CV overview", tab: 11 },
-  { cmd: "echo", desc: "print out anything", tab: 9 },
-  { cmd: "education", desc: "my education background", tab: 4 },
-  { cmd: "email", desc: "send an email to me", tab: 8 },
-  { cmd: "experience", desc: "my work experience", tab: 4 },
-  { cmd: "gui", desc: "go to my portfolio in GUI", tab: 10 },
-  { cmd: "help", desc: "check available commands", tab: 9 },
-  { cmd: "history", desc: "view command history", tab: 6 },
-  { cmd: "projects", desc: "view projects that I've coded", tab: 5 },
-  { cmd: "publications", desc: "my published research papers", tab: 2 },
-  { cmd: "pwd", desc: "print current working directory", tab: 10 },
-  { cmd: "socials", desc: "check out my social accounts", tab: 6 },
-  { cmd: "themes", desc: "check available themes", tab: 7 },
-  { cmd: "volunteer", desc: "my volunteer experience", tab: 5 },
-  { cmd: "welcome", desc: "display hero section", tab: 6 },
-  { cmd: "whoami", desc: "about current user", tab: 7 },
+  { cmd: "about", desc: "about Ahmad Jalil" },
+  { cmd: "awards", desc: "view awards and achievements" },
+  { cmd: "clear", desc: "clear the terminal" },
+  { cmd: "cv", desc: "view CV overview" },
+  { cmd: "echo", desc: "print out anything" },
+  { cmd: "education", desc: "my education background" },
+  { cmd: "email", desc: "send an email to me" },
+  { cmd: "experience", desc: "my work experience" },
+  { cmd: "gui", desc: "go to my portfolio in GUI" },
+  { cmd: "help", desc: "check available commands" },
+  { cmd: "history", desc: "view command history" },
+  { cmd: "projects", desc: "view projects that I've coded" },
+  { cmd: "publications", desc: "my published research papers" },
+  { cmd: "pwd", desc: "print current working directory" },
+  { cmd: "socials", desc: "check out my social accounts" },
+  { cmd: "themes", desc: "check available themes" },
+  { cmd: "volunteer", desc: "my volunteer experience" },
+  { cmd: "welcome", desc: "display hero section" },
+  { cmd: "whoami", desc: "about current user" },
 ];
 
 type Term = {
