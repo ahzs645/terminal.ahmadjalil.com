@@ -4,6 +4,13 @@ cv:
   email: me@ahmadjalil.com
   phone: +1-778-267-9144
   website: https://ahmadjalil.com
+  social:
+    - network: LinkedIn
+      username: ahmad-jalil-b00669197
+      url: https://www.linkedin.com/in/ahmad-jalil-b00669197/
+    - network: GitHub
+      username: ahzs645
+      url: https://github.com/ahzs645
   
   sections:
     experience:
@@ -132,6 +139,37 @@ cv:
           - Assist recreation therapists and engage in activities with residents at Rainbow Lodge & Gateway, a long-term care home and facilities, enhancing their daily lives and well-being
           - Provide emotional support and reassurance to dementia patients, helping them feel more secure and oriented in their environment
           - Deepen my understanding of patient-centered medicine through direct interactions, learning about residents' needs and perspectives
+
+    projects:
+      - title: Whisperdesk
+        description: A powerful desktop transcription application powered by native whisper.cpp with persistent state management and real-time progress feedback
+        link: https://github.com/ahzs645/WhisperDesk
+        technologies: [C++, Whisper.cpp, Desktop Development]
+        
+      - title: Aethalometer Analysis
+        description: Repository script kit to process aethalometer data from micro aeth for air quality research and environmental monitoring
+        link: https://github.com/ahzs645/aethmodular
+        technologies: [Python, Data Processing, Environmental Analysis]
+        
+      - title: Whisperdesk Diarization
+        description: Advanced Multi-Speaker Diarization Engine with cross-platform C++ implementation using PyAnnote 3.0 ONNX models
+        link: https://github.com/ahzs645/whisperdesk-diarization
+        technologies: [C++, ONNX, Machine Learning, Audio Processing]
+        
+      - title: UNBC Door Sign Generator
+        description: A web-based tool for generating standardized door signs for the University of Northern British Columbia (UNBC)
+        link: https://github.com/ahzs645/UNBCDoor
+        technologies: [Web Development, Design Tools]
+        
+      - title: Card Printer Calibration
+        description: Color management and calibration system specifically designed for ID card printing workflows, ensuring consistent and accurate color reproduction across different printing devices and conditions
+        link: https://github.com/ahzs645/printercalibration
+        technologies: [Color Management, Calibration Systems, Print Technology]
+        
+      - title: Markdown Milker
+        description: Collaborative markdown editor enabling multiple users to edit markdown files together in real-time, with drag-and-drop file organization and integrated image management
+        link: ""
+        technologies: [Real-time Collaboration, Markdown, Web Development]
 
     education:
       - institution: University of Northern British Columbia

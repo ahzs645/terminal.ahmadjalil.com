@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   checkRedirect,
   getCurrentCmdArry,
@@ -12,72 +12,77 @@ import {
 } from "../styles/Projects.styled";
 import { termContext } from "../Terminal";
 import Usage from "../Usage";
+import { getCVData, CVProject } from "../../utils/cvData";
 
 const Projects: React.FC = () => {
   const { arg, history, rerender } = useContext(termContext);
+  const [projects, setProjects] = useState<CVProject[]>([]);
+  const [loading, setLoading] = useState(true);
 
   /* ===== get current command ===== */
   const currentCommand = getCurrentCmdArry(history);
 
+  /* ===== Load CV data ===== */
+  useEffect(() => {
+    const loadProjects = async () => {
+      try {
+        const cvData = await getCVData();
+        setProjects(cvData.cv.sections.projects);
+      } catch (error) {
+        console.error("Error loading projects:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProjects();
+  }, []);
+
   /* ===== check current command is redirect ===== */
   useEffect(() => {
     if (checkRedirect(rerender, currentCommand, "projects")) {
-      projects.forEach(({ id, url }) => {
-        id === parseInt(arg[1]) && window.open(url, "_blank");
+      projects.forEach((project, index) => {
+        const projectIndex = index + 1;
+        if (projectIndex === parseInt(arg[1]) && project.link) {
+          window.open(project.link, "_blank");
+        }
       });
     }
-  }, [arg, rerender, currentCommand]);
+  }, [arg, rerender, currentCommand, projects]);
 
   /* ===== check arg is valid ===== */
-  const checkArg = () =>
-    isArgInvalid(arg, "go", ["1", "2", "3", "4"]) ? (
+  const checkArg = () => {
+    const validArgs = projects && projects.length > 0 ? projects.map((_, index) => (index + 1).toString()) : [];
+    return isArgInvalid(arg, "go", validArgs) ? (
       <Usage cmd="projects" />
     ) : null;
+  };
+
+  if (loading) {
+    return <div>Loading projects...</div>;
+  }
 
   return arg.length > 0 || arg.length > 2 ? (
     checkArg()
   ) : (
     <div data-testid="projects">
       <ProjectsIntro>
-        “Talk is cheap. Show me the code”? I got you. <br />
-        Here are some of my projects you shouldn't misss
+        "Talk is cheap. Show me the code"? I got you. <br />
+        Here are some of my projects you shouldn't miss
       </ProjectsIntro>
-      {projects.map(({ id, title, desc }) => (
-        <ProjectContainer key={id}>
-          <ProjectTitle>{`${id}. ${title}`}</ProjectTitle>
-          <ProjectDesc>{desc}</ProjectDesc>
+      {projects && projects.length > 0 ? projects.map((project, index) => (
+        <ProjectContainer key={index}>
+          <ProjectTitle>{`${index + 1}. ${project.title}`}</ProjectTitle>
+          <ProjectDesc>
+            {project.description}
+          </ProjectDesc>
         </ProjectContainer>
-      ))}
+      )) : (
+        <div>No projects found.</div>
+      )}
       <Usage cmd="projects" marginY />
     </div>
   );
 };
-
-const projects = [
-  {
-    id: 1,
-    title: "Sat Naing's Blog",
-    desc: "My personal blog where I can write down my thoughts and experiences.",
-    url: "https://satnaing.dev/blog/",
-  },
-  {
-    id: 2,
-    title: "Haru Fashion",
-    desc: "An ecommerce web application where users can browse various products and make purchases.",
-    url: "https://haru-fashion.vercel.app/",
-  },
-  {
-    id: 3,
-    title: "Haru API",
-    desc: "A RESTful API developed for the Haru fashion ecommerce project.",
-    url: "https://satnaing.github.io/haru-api/",
-  },
-  {
-    id: 4,
-    title: "AstroPaper Blog Theme",
-    desc: "A minimal, accessible and SEO-friendly Astro blog theme.",
-    url: "https://astro-paper.pages.dev/",
-  },
-];
 
 export default Projects;

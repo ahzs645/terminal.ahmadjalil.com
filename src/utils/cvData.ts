@@ -60,6 +60,19 @@ export interface CVProfessionalDevelopment {
   summary: string;
 }
 
+export interface CVProject {
+  title: string;
+  description: string;
+  link: string;
+  technologies: string[];
+}
+
+export interface CVSocial {
+  network: string;
+  username: string;
+  url: string;
+}
+
 export interface CVData {
   cv: {
     name: string;
@@ -67,10 +80,12 @@ export interface CVData {
     email: string;
     phone: string;
     website: string;
+    social?: CVSocial[];
     sections: {
       experience: CVExperience[];
       education: CVEducation[];
       volunteer: CVVolunteer[];
+      projects: CVProject[];
       awards: CVAward[];
       presentations: CVPresentation[];
       publications: CVPublication[];
@@ -142,6 +157,7 @@ export const getCVData = async (): Promise<CVData> => {
           experience: [],
           education: [],
           volunteer: [],
+          projects: [],
           awards: [],
           presentations: [],
           publications: [],

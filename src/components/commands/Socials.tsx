@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ProjectsIntro } from "../styles/Projects.styled";
 import { Cmd, CmdDesc, CmdList, HelpWrapper } from "../styles/Help.styled";
 import {
@@ -9,70 +9,83 @@ import {
 } from "../../utils/funcs";
 import { termContext } from "../Terminal";
 import Usage from "../Usage";
+import { getCVData, CVSocial } from "../../utils/cvData";
 
 const Socials: React.FC = () => {
   const { arg, history, rerender } = useContext(termContext);
+  const [socials, setSocials] = useState<CVSocial[]>([]);
+  const [loading, setLoading] = useState(true);
 
   /* ===== get current command ===== */
   const currentCommand = getCurrentCmdArry(history);
 
+  /* ===== Load CV data ===== */
+  useEffect(() => {
+    const loadSocials = async () => {
+      try {
+        const cvData = await getCVData();
+        setSocials(cvData.cv.social || []);
+      } catch (error) {
+        console.error("Error loading socials:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadSocials();
+  }, []);
+
   /* ===== check current command makes redirect ===== */
   useEffect(() => {
     if (checkRedirect(rerender, currentCommand, "socials")) {
-      socials.forEach(({ id, url }) => {
-        id === parseInt(arg[1]) && window.open(url, "_blank");
+      socials.forEach((social, index) => {
+        const socialIndex = index + 1;
+        if (socialIndex === parseInt(arg[1]) && social.url) {
+          window.open(social.url, "_blank");
+        }
       });
     }
-  }, [arg, rerender, currentCommand]);
+  }, [arg, rerender, currentCommand, socials]);
 
   /* ===== check arg is valid ===== */
-  const checkArg = () =>
-    isArgInvalid(arg, "go", ["1", "2", "3", "4"]) ? (
+  const checkArg = () => {
+    const validArgs = socials && socials.length > 0 ? socials.map((_, index) => (index + 1).toString()) : [];
+    return isArgInvalid(arg, "go", validArgs) ? (
       <Usage cmd="socials" />
     ) : null;
+  };
+
+  if (loading) {
+    return <div>Loading socials...</div>;
+  }
 
   return arg.length > 0 || arg.length > 2 ? (
     checkArg()
   ) : (
     <HelpWrapper data-testid="socials">
       <ProjectsIntro>Here are my social links</ProjectsIntro>
-      {socials.map(({ id, title, url, tab }) => (
-        <CmdList key={title}>
-          <Cmd>{`${id}. ${title}`}</Cmd>
-          {generateTabs(tab)}
-          <CmdDesc>- {url}</CmdDesc>
-        </CmdList>
-      ))}
+      {socials && socials.length > 0 ? (() => {
+        // Find the longest social network name for proper alignment
+        const maxNetworkLength = Math.max(...socials.map(({ network }) => network.length));
+        
+        return socials.map((social, index) => {
+          // Calculate the number of spaces needed for alignment
+          const spacesNeeded = maxNetworkLength - social.network.length + 2; // +2 for extra spacing
+          
+          return (
+            <CmdList key={social.network}>
+              <Cmd>{`${index + 1}. ${social.network}`}</Cmd>
+              {generateTabs(spacesNeeded)}
+              <CmdDesc>- {social.url}</CmdDesc>
+            </CmdList>
+          );
+        });
+      })() : (
+        <div>No social links found.</div>
+      )}
       <Usage cmd="socials" marginY />
     </HelpWrapper>
   );
 };
-
-const socials = [
-  {
-    id: 1,
-    title: "GitHub",
-    url: "https://github.com/ahzs645",
-    tab: 3,
-  },
-  {
-    id: 2,
-    title: "Dev.to",
-    url: "https://dev.to/satnaing",
-    tab: 3,
-  },
-  {
-    id: 3,
-    title: "Facebook",
-    url: "https://www.facebook.com/ahzs645",
-    tab: 1,
-  },
-  {
-    id: 4,
-    title: "Instagram",
-    url: "https://instagram.com/ahzs645",
-    tab: 0,
-  },
-];
 
 export default Socials;
