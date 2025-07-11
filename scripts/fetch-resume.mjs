@@ -38,32 +38,45 @@ async function fetchFromGitHub() {
     
     console.log(`📡 Using ${useApi ? 'GitHub API' : 'Raw URL'} method`);
     
-    // Prepare headers for authentication
+    // Prepare headers for authentication - Updated format
     const headers = {
-      'User-Agent': 'Terminal-Portfolio-Builder'
+      'User-Agent': 'Terminal-Portfolio-Builder',
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28'
     };
     
-    // Add authorization header if token is provided
+    // Add authorization header if token is provided - FIXED FORMAT
     if (GITHUB_TOKEN) {
-      headers['Authorization'] = `token ${GITHUB_TOKEN}`;
-      if (useApi) {
-        headers['Accept'] = 'application/vnd.github.v3+json';
-      }
+      headers['Authorization'] = `Bearer ${GITHUB_TOKEN}`;  // Updated to Bearer
     }
+    
+    console.log(`🔗 Fetching: ${url}`);
+    console.log(`🔐 Auth header: ${headers['Authorization'] ? 'Bearer ***' : 'None'}`);
     
     const response = await fetch(url, { headers });
     
+    console.log(`📊 Response status: ${response.status} ${response.statusText}`);
+    
     if (!response.ok) {
+      // More detailed error handling
+      const errorText = await response.text();
+      console.log(`📄 Error response: ${errorText}`);
+      
       if (response.status === 404) {
         const errorMsg = GITHUB_TOKEN 
-          ? `Repository or file not found. Please check:\n  - Repository: ${RESUME_REPO}\n  - Branch: ${RESUME_BRANCH}\n  - File: ${RESUME_FILE_PATH}\n  - Token has access to the repository`
-          : `Repository or file not found. Please check:\n  - Repository: ${RESUME_REPO}\n  - Branch: ${RESUME_BRANCH}\n  - File: ${RESUME_FILE_PATH}\n  - Repository is private (add VITE_GITHUB_TOKEN to .env.local or use GitHub secrets)`;
+          ? `Repository or file not found. Please check:\n  - Repository: ${RESUME_REPO}\n  - Branch: ${RESUME_BRANCH}\n  - File: ${RESUME_FILE_PATH}\n  - Token has access to the repository\n  - Token has 'repo' scope for private repositories`
+          : `Repository or file not found. Please check:\n  - Repository: ${RESUME_REPO}\n  - Branch: ${RESUME_BRANCH}\n  - File: ${RESUME_FILE_PATH}\n  - Repository is private (add VITE_GITHUB_TOKEN to .env.local)`;
         throw new Error(errorMsg);
       }
       if (response.status === 401) {
-        throw new Error('Authentication failed. Please check your GitHub token or use GitHub secrets for CI/CD.');
+        throw new Error('Authentication failed. Please check your GitHub token.');
       }
       if (response.status === 403) {
+        // Check if it's a rate limit or permissions issue
+        const rateLimitRemaining = response.headers.get('X-RateLimit-Remaining');
+        if (rateLimitRemaining === '0') {
+          throw new Error('GitHub API rate limit exceeded. Try again later or use a token.');
+        }
         throw new Error('Access forbidden. Please check your GitHub token permissions or repository access.');
       }
       throw new Error(`GitHub fetch failed: ${response.status} ${response.statusText}`);
