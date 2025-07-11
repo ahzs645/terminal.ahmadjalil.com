@@ -35,7 +35,6 @@ export const commands: Command = [
   { cmd: "education", desc: "my education background", tab: 4 },
   { cmd: "email", desc: "send an email to me", tab: 8 },
   { cmd: "experience", desc: "my work experience", tab: 4 },
-  { cmd: "experience-details", desc: "detailed work experience", tab: 0 },
   { cmd: "gui", desc: "go to my portfolio in GUI", tab: 10 },
   { cmd: "help", desc: "check available commands", tab: 9 },
   { cmd: "history", desc: "view command history", tab: 6 },

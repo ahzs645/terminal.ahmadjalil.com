@@ -4,7 +4,6 @@ import CV from "./commands/CV";
 import Echo from "./commands/Echo";
 import Education from "./commands/Education";
 import Experience from "./commands/Experience";
-import ExperienceDetails from "./commands/ExperienceDetails";
 import Awards from "./commands/Awards";
 import Publications from "./commands/Publications";
 import Volunteer from "./commands/Volunteer";
@@ -29,7 +28,7 @@ type Props = {
 const Output: React.FC<Props> = ({ index, cmd }) => {
   const { arg } = useContext(termContext);
 
-  const specialCmds = ["projects", "socials", "themes", "echo", "experience-details"];
+  const specialCmds = ["projects", "socials", "themes", "echo", "experience", "awards", "volunteer"];
 
   // return 'Usage: <cmd>' if command arg is not valid
   // eg: about tt
@@ -48,7 +47,6 @@ const Output: React.FC<Props> = ({ index, cmd }) => {
           education: <Education />,
           email: <Email />,
           experience: <Experience />,
-          "experience-details": <ExperienceDetails />,
           gui: <Gui />,
           help: <Help />,
           history: <History />,
