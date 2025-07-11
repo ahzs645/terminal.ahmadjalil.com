@@ -23,7 +23,7 @@ async function testRepoAccess() {
   try {
     const repoUrl = `https://api.github.com/repos/${RESUME_REPO}`;
     const headers = {
-      'Authorization': `Bearer ${GITHUB_TOKEN}`,
+      'Authorization': `token ${GITHUB_TOKEN}`,
       'Accept': 'application/vnd.github.v3+json',
       'User-Agent': 'Terminal-Portfolio-Debug'
     };
@@ -51,7 +51,7 @@ async function testFileAccess() {
   try {
     const fileUrl = `https://api.github.com/repos/${RESUME_REPO}/contents/Ahmad_Jalil_CV.yaml`;
     const headers = {
-      'Authorization': `Bearer ${GITHUB_TOKEN}`,
+      'Authorization': `token ${GITHUB_TOKEN}`,
       'Accept': 'application/vnd.github.v3+json',
       'User-Agent': 'Terminal-Portfolio-Debug'
     };

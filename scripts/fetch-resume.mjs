@@ -45,7 +45,7 @@ async function fetchFromGitHub() {
     
     // Add authorization header if token is provided
     if (GITHUB_TOKEN) {
-      headers['Authorization'] = `Bearer ${GITHUB_TOKEN}`;
+      headers['Authorization'] = `token ${GITHUB_TOKEN}`;
       if (useApi) {
         headers['Accept'] = 'application/vnd.github.v3+json';
       }
