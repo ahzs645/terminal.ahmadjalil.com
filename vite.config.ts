@@ -7,7 +7,7 @@ import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/terminal.ahmadjalil.com/',
+  base: '/', // Changed from '/terminal.ahmadjalil.com/' to '/' for custom domain
   plugins: [
     react(),
     VitePWA({
