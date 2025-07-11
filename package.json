@@ -4,13 +4,16 @@
   "version": "1.3.1",
   "scripts": {
     "dev": "vite",
-    "build": "cp Ahmad_Jalil_CV.yaml public/Ahmad_Jalil_CV.yaml && tsc && vite build",
+    "build": "node scripts/fetch-resume.mjs && tsc && vite build",
     "preview": "vite preview",
     "test:once": "vitest run",
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "prepare": "husky install",
-    "prepare-cv": "cp Ahmad_Jalil_CV.yaml public/Ahmad_Jalil_CV.yaml",
+    "prepare-cv": "node scripts/fetch-resume.mjs",
+    "prepare-cv-local": "cp Ahmad_Jalil_CV.yaml public/Ahmad_Jalil_CV.yaml",
+    "test-resume-config": "node scripts/fetch-resume.mjs",
+    "validate-resume-config": "node scripts/validate-resume-config.mjs",
     "lint": "eslint .",
     "format:check": "prettier --check .",
     "format": "prettier --write ."

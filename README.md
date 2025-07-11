@@ -50,22 +50,53 @@ This is my personal terminal portfolio website that dynamically loads CV data fr
 
 ## YAML-Driven CV System
 
-The portfolio automatically pulls CV data from `Ahmad_Jalil_CV.yaml`. To update:
+The portfolio can automatically pull CV data from any GitHub repository, making it easy to maintain your resume separately and allowing others to fork this project with their own resume data.
 
-1. Edit `Ahmad_Jalil_CV.yaml`
+### Quick Setup for Your Own Resume
+
+1. **Fork this repository**
+2. **Configure your resume source:**
+   ```bash
+   cp .env.example .env.local
+   # Edit .env.local with your resume repository details
+   ```
+3. **Build and deploy:**
+   ```bash
+   npm run build  # Automatically fetches your resume
+   ```
+
+See [RESUME_CONFIG.md](RESUME_CONFIG.md) for detailed configuration options.
+
+### Default Configuration
+
+By default, pulls from `ahzs645/resume` repository. To update my CV:
+
+1. Edit YAML in the [resume repository](https://github.com/ahzs645/resume)
 2. Commit and push changes
-3. GitHub Actions automatically deploys
+3. GitHub Actions automatically deploys (using built-in `GITHUB_TOKEN`)
 
-No code changes required.
+No additional setup required for same-user repositories!
 
 ## Running Locally
 
 ```bash
 git clone https://github.com/ahzs645/terminal.ahmadjalil.com.git
 cd terminal.ahmadjalil.com
-pnpm install
-pnpm run prepare-cv
-pnpm dev
+npm install
+npm run prepare-cv  # Fetches resume from GitHub
+npm run dev
+```
+
+### Using Your Own Resume
+
+```bash
+# Configure your resume repository
+cp .env.example .env.local
+# Edit .env.local with your settings
+
+# Fetch your resume and run
+npm run prepare-cv
+npm run dev
 ```
 
 ## Credits
@@ -73,6 +104,8 @@ pnpm dev
 Forked from [terminal-portfolio](https://github.com/satnaing/terminal-portfolio) by Sat Naing (@satnaing).
 
 ### My Contributions
+- **GitHub Resume Integration** - Fetch resume from any GitHub repository
+- **Configurable Resume Source** - Easy setup for others to use their own resumes
 - YAML-driven CV data management system
 - Enhanced CV commands and detailed views
 - Professional focus for academic/research presentation

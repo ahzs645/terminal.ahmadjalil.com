@@ -1,4 +1,5 @@
 import yaml from 'js-yaml';
+import { config, getGitHubRawUrl } from '../config/environment';
 
 // CV Data Types
 export interface CVExperience {
@@ -132,9 +133,15 @@ export const getCVData = async (): Promise<CVData> => {
   }
 
   try {
-    // In development, fetch from the public directory
-    // In production, this will work the same way
-    const response = await fetch('/Ahmad_Jalil_CV.yaml');
+    // Try to fetch from the public directory first (which should contain the pre-fetched YAML)
+    let response = await fetch('/Ahmad_Jalil_CV.yaml');
+    
+    // If that fails and we're in development, try fetching directly from GitHub
+    if (!response.ok && import.meta.env.DEV) {
+      console.log('Local YAML not found, trying GitHub directly...');
+      const githubUrl = getGitHubRawUrl(config.RESUME_REPO, config.RESUME_BRANCH, config.RESUME_FILE_PATH);
+      response = await fetch(githubUrl);
+    }
     
     if (!response.ok) {
       throw new Error(`Failed to fetch CV data: ${response.status}`);
