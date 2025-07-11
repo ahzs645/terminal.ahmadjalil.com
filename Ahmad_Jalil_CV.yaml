@@ -1,0 +1,49 @@
+cv:
+  name: "Ahmad Jalil"
+  location: "Prince George, BC"
+  email: "me@ahmadjalil.com"
+  phone: "+1-778-267-9144"
+  website: "https://ahmadjalil.com"
+  social:
+    - network: "LinkedIn"
+      username: "ahmad-jalil"
+      url: "https://linkedin.com/in/ahmad-jalil"
+    - network: "GitHub"
+      username: "ahzs645"
+      url: "https://github.com/ahzs645"
+  sections:
+    experience:
+      - company: "Sample Company"
+        position: "Software Developer"
+        location: "Remote"
+        start_date: "2023-01"
+        end_date: "present"
+        show_date_in_position: true
+        spacing_after: "normal"
+        highlights:
+          - "Developed web applications using React and Node.js"
+          - "Collaborated with cross-functional teams"
+    education:
+      - institution: "University of Northern British Columbia"
+        area: "Computer Science"
+        degree: "Bachelor of Science"
+        location: "Prince George, BC"
+        start_date: "2019-09"
+        end_date: "2023-05"
+        highlights:
+          - "Graduated with distinction"
+    volunteer: []
+    projects:
+      - title: "Terminal Portfolio"
+        description: "A terminal-style portfolio website"
+        link: "https://github.com/ahzs645/terminal.ahmadjalil.com"
+        technologies: ["React", "TypeScript", "Styled-Components"]
+    awards: []
+    presentations: []
+    publications: []
+    professional_development: []
+    certifications_and_skills:
+      - "JavaScript/TypeScript"
+      - "React"
+      - "Node.js"
+      - "Git"

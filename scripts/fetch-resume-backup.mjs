@@ -3,13 +3,13 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { config } from 'dotenv';
+import dotenv from 'dotenv';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Load environment variables from .env.local
-config({ path: path.join(__dirname, '..', '.env.local') });
+dotenv.config({ path: path.join(__dirname, '..', '.env.local') });
 
 // Configuration from environment variables
 const RESUME_REPO = process.env.VITE_RESUME_REPO || 'ahzs645/resume';
@@ -106,6 +106,22 @@ async function fetchFromGitHub() {
     return false;
   }
 }
+    if (!fs.existsSync(publicDir)) {
+      fs.mkdirSync(publicDir, { recursive: true });
+    }
+    
+    // Write the fetched content
+    fs.writeFileSync(targetYamlPath, yamlContent, 'utf8');
+    console.log(`✅ Successfully fetched and saved resume to ${targetYamlPath}`);
+    console.log(`📏 Content size: ${yamlContent.length} characters`);
+    console.log(`🔗 Used ${useApi ? 'GitHub API' : 'Raw URL'} method`);
+    
+    return true;
+  } catch (error) {
+    console.error(`❌ Failed to fetch from GitHub: ${error.message}`);
+    return false;
+  }
+}
 
 async function useLocalFallback() {
   try {
@@ -134,8 +150,8 @@ async function main() {
   console.log(`📂 Repository: ${RESUME_REPO}`);
   console.log(`🌿 Branch: ${RESUME_BRANCH}`);
   console.log(`📄 File: ${RESUME_FILE_PATH}`);
-  console.log(`🔐 Token: ${GITHUB_TOKEN ? '✅ Provided' : '❌ Not provided (public repos only)'}`);
-  console.log(`🔄 Local fallback: ${USE_LOCAL_FALLBACK ? 'enabled' : 'disabled'}`);
+  console.log(`� Token: ${GITHUB_TOKEN ? '✅ Provided' : '❌ Not provided (public repos only)'}`);
+  console.log(`�🔄 Local fallback: ${USE_LOCAL_FALLBACK ? 'enabled' : 'disabled'}`);
   console.log('');
   
   // Try to fetch from GitHub first
