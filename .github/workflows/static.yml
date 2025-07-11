@@ -45,8 +45,22 @@ jobs:
       - name: Install dependencies
         run: pnpm install
         
+      # CRITICAL: Copy YAML file to public directory before build
+      - name: Copy CV YAML to public directory
+        run: |
+          echo "Copying Ahmad_Jalil_CV.yaml to public directory..."
+          cp Ahmad_Jalil_CV.yaml public/Ahmad_Jalil_CV.yaml
+          echo "Verifying file was copied:"
+          ls -la public/Ahmad_Jalil_CV.yaml
+        
       - name: Build project
         run: pnpm build
+        
+      # Verify the YAML file made it to the build output
+      - name: Verify YAML in build output
+        run: |
+          echo "Checking if YAML file exists in dist directory:"
+          ls -la dist/Ahmad_Jalil_CV.yaml || echo "YAML file not found in dist!"
         
       - name: Add CNAME file
         run: echo "terminal.ahmadjalil.com" > ./dist/CNAME
