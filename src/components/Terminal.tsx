@@ -37,6 +37,7 @@ export const commands: Command = [
   { cmd: "gui", desc: "go to my portfolio in GUI" },
   { cmd: "help", desc: "check available commands" },
   { cmd: "history", desc: "view command history" },
+  { cmd: "professional", desc: "my professional development" },
   { cmd: "projects", desc: "view projects that I've coded" },
   { cmd: "publications", desc: "my published research papers" },
   { cmd: "pwd", desc: "print current working directory" },

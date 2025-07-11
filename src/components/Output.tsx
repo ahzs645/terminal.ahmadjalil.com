@@ -7,6 +7,7 @@ import Experience from "./commands/Experience";
 import Awards from "./commands/Awards";
 import Publications from "./commands/Publications";
 import Volunteer from "./commands/Volunteer";
+import ProfessionalDevelopment from "./commands/ProfessionalDevelopment";
 import Email from "./commands/Email";
 import GeneralOutput from "./commands/GeneralOutput";
 import Gui from "./commands/Gui";
@@ -28,7 +29,7 @@ type Props = {
 const Output: React.FC<Props> = ({ index, cmd }) => {
   const { arg } = useContext(termContext);
 
-  const specialCmds = ["projects", "socials", "themes", "echo", "experience", "awards", "volunteer"];
+  const specialCmds = ["projects", "socials", "themes", "echo", "experience", "awards", "volunteer", "education", "professional"];
 
   // return 'Usage: <cmd>' if command arg is not valid
   // eg: about tt
@@ -50,6 +51,7 @@ const Output: React.FC<Props> = ({ index, cmd }) => {
           gui: <Gui />,
           help: <Help />,
           history: <History />,
+          professional: <ProfessionalDevelopment />,
           projects: <Projects />,
           publications: <Publications />,
           pwd: <GeneralOutput>/home/ahzs645</GeneralOutput>,
