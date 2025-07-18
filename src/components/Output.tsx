@@ -1,6 +1,7 @@
 import About from "./commands/About";
 import Clear from "./commands/Clear";
 import CV from "./commands/CV";
+import DownloadCV from "./commands/DownloadCV";
 import Echo from "./commands/Echo";
 import Education from "./commands/Education";
 import Experience from "./commands/Experience";
@@ -44,6 +45,7 @@ const Output: React.FC<Props> = ({ index, cmd }) => {
           awards: <Awards />,
           clear: <Clear />,
           cv: <CV />,
+          "download-cv": <DownloadCV />,
           echo: <Echo />,
           education: <Education />,
           email: <Email />,

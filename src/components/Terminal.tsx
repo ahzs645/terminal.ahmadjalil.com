@@ -30,6 +30,7 @@ export const commands: Command = [
   { cmd: "awards", desc: "view awards and achievements" },
   { cmd: "clear", desc: "clear the terminal" },
   { cmd: "cv", desc: "view CV overview" },
+  { cmd: "download-cv", desc: "download Ahmad Jalil's CV (PDF)" },
   { cmd: "echo", desc: "print out anything" },
   { cmd: "education", desc: "my education background" },
   { cmd: "email", desc: "send an email to me" },
