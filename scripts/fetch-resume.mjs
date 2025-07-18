@@ -15,6 +15,7 @@ config({ path: path.join(__dirname, '..', '.env.local') });
 const RESUME_REPO = process.env.VITE_RESUME_REPO || 'ahzs645/resume';
 const RESUME_BRANCH = process.env.VITE_RESUME_BRANCH || 'main';
 const RESUME_FILE_PATH = process.env.VITE_RESUME_FILE_PATH || 'Ahmad_Jalil_CV.yaml';
+const RESUME_PDF_PATH = process.env.VITE_RESUME_PDF_PATH || 'Ahmad_Jalil_CV.pdf';
 // Support both custom token and GitHub Actions built-in token
 const GITHUB_TOKEN = process.env.VITE_GITHUB_TOKEN || process.env.GITHUB_TOKEN || '';
 const USE_LOCAL_FALLBACK = process.env.VITE_USE_LOCAL_FALLBACK !== 'false';
@@ -22,19 +23,25 @@ const USE_LOCAL_FALLBACK = process.env.VITE_USE_LOCAL_FALLBACK !== 'false';
 // Paths
 const publicDir = path.join(__dirname, '..', 'public');
 const localYamlPath = path.join(__dirname, '..', 'Ahmad_Jalil_CV.yaml');
+const localPdfPath = path.join(__dirname, '..', 'Ahmad_Jalil_CV.pdf');
 const targetYamlPath = path.join(publicDir, 'Ahmad_Jalil_CV.yaml');
+const targetPdfPath = path.join(publicDir, 'Ahmad_Jalil_CV.pdf');
 
 // GitHub URLs
 const githubRawUrl = `https://raw.githubusercontent.com/${RESUME_REPO}/${RESUME_BRANCH}/${RESUME_FILE_PATH}`;
 const githubApiUrl = `https://api.github.com/repos/${RESUME_REPO}/contents/${RESUME_FILE_PATH}?ref=${RESUME_BRANCH}`;
+const githubPdfRawUrl = `https://raw.githubusercontent.com/${RESUME_REPO}/${RESUME_BRANCH}/${RESUME_PDF_PATH}`;
+const githubPdfApiUrl = `https://api.github.com/repos/${RESUME_REPO}/contents/${RESUME_PDF_PATH}?ref=${RESUME_BRANCH}`;
 
 console.log(`🔄 Fetching resume from: ${GITHUB_TOKEN ? githubApiUrl : githubRawUrl}`);
+console.log(`🔄 Fetching PDF from: ${GITHUB_TOKEN ? githubPdfApiUrl : githubPdfRawUrl}`);
 
 async function fetchFromGitHub() {
   try {
     // For private repos with token, use GitHub API; for public repos, use raw URL
     const useApi = GITHUB_TOKEN && GITHUB_TOKEN.length > 0;
-    const url = useApi ? githubApiUrl : githubRawUrl;
+    const yamlUrl = useApi ? githubApiUrl : githubRawUrl;
+    const pdfUrl = useApi ? githubPdfApiUrl : githubPdfRawUrl;
     
     console.log(`📡 Using ${useApi ? 'GitHub API' : 'Raw URL'} method`);
     
@@ -50,51 +57,83 @@ async function fetchFromGitHub() {
       headers['Authorization'] = `Bearer ${GITHUB_TOKEN}`;  // Updated to Bearer
     }
     
-    console.log(`🔗 Fetching: ${url}`);
-    console.log(`🔐 Auth header: ${headers['Authorization'] ? 'Bearer ***' : 'None'}`);
+    console.log(`🔗 Fetching YAML: ${yamlUrl}`);
+    console.log(`� Fetching PDF: ${pdfUrl}`);
+    console.log(`�🔐 Auth header: ${headers['Authorization'] ? 'Bearer ***' : 'None'}`);
     
-    const response = await fetch(url, { headers });
+    // Fetch YAML file
+    const yamlResponse = await fetch(yamlUrl, { headers });
     
-    console.log(`📊 Response status: ${response.status} ${response.statusText}`);
+    console.log(`📊 YAML Response status: ${yamlResponse.status} ${yamlResponse.statusText}`);
     
-    if (!response.ok) {
+    if (!yamlResponse.ok) {
       // More detailed error handling
-      const errorText = await response.text();
-      console.log(`📄 Error response: ${errorText}`);
+      const errorText = await yamlResponse.text();
+      console.log(`📄 YAML Error response: ${errorText}`);
       
-      if (response.status === 404) {
+      if (yamlResponse.status === 404) {
         const errorMsg = GITHUB_TOKEN 
           ? `Repository or file not found. Please check:\n  - Repository: ${RESUME_REPO}\n  - Branch: ${RESUME_BRANCH}\n  - File: ${RESUME_FILE_PATH}\n  - Token has access to the repository\n  - Token has 'repo' scope for private repositories`
           : `Repository or file not found. Please check:\n  - Repository: ${RESUME_REPO}\n  - Branch: ${RESUME_BRANCH}\n  - File: ${RESUME_FILE_PATH}\n  - Repository is private (add VITE_GITHUB_TOKEN to .env.local)`;
         throw new Error(errorMsg);
       }
-      if (response.status === 401) {
+      if (yamlResponse.status === 401) {
         throw new Error('Authentication failed. Please check your GitHub token.');
       }
-      if (response.status === 403) {
+      if (yamlResponse.status === 403) {
         // Check if it's a rate limit or permissions issue
-        const rateLimitRemaining = response.headers.get('X-RateLimit-Remaining');
+        const rateLimitRemaining = yamlResponse.headers.get('X-RateLimit-Remaining');
         if (rateLimitRemaining === '0') {
           throw new Error('GitHub API rate limit exceeded. Try again later or use a token.');
         }
         throw new Error('Access forbidden. Please check your GitHub token permissions or repository access.');
       }
-      throw new Error(`GitHub fetch failed: ${response.status} ${response.statusText}`);
+      throw new Error(`GitHub YAML fetch failed: ${yamlResponse.status} ${yamlResponse.statusText}`);
     }
     
     let yamlContent;
     
     if (useApi) {
       // GitHub API returns base64 encoded content
-      const data = await response.json();
-      if (data.encoding === 'base64') {
-        yamlContent = Buffer.from(data.content, 'base64').toString('utf8');
+      const yamlData = await yamlResponse.json();
+      if (yamlData.encoding === 'base64') {
+        yamlContent = Buffer.from(yamlData.content, 'base64').toString('utf8');
       } else {
         throw new Error('Unexpected encoding from GitHub API');
       }
     } else {
       // Raw URL returns plain text
-      yamlContent = await response.text();
+      yamlContent = await yamlResponse.text();
+    }
+    
+    // Fetch PDF file
+    const pdfResponse = await fetch(pdfUrl, { headers });
+    
+    console.log(`📊 PDF Response status: ${pdfResponse.status} ${pdfResponse.statusText}`);
+    
+    if (!pdfResponse.ok) {
+      console.log(`⚠️  PDF fetch failed: ${pdfResponse.status} ${pdfResponse.statusText}`);
+      console.log(`📄 Continuing without PDF...`);
+    } else {
+      let pdfContent;
+      
+      if (useApi) {
+        // GitHub API returns base64 encoded content
+        const pdfData = await pdfResponse.json();
+        if (pdfData.encoding === 'base64') {
+          pdfContent = Buffer.from(pdfData.content, 'base64');
+        } else {
+          throw new Error('Unexpected encoding from GitHub API for PDF');
+        }
+      } else {
+        // Raw URL returns binary data
+        pdfContent = Buffer.from(await pdfResponse.arrayBuffer());
+      }
+      
+      // Write the PDF content
+      fs.writeFileSync(targetPdfPath, pdfContent);
+      console.log(`✅ Successfully fetched and saved PDF to ${targetPdfPath}`);
+      console.log(`📏 PDF size: ${pdfContent.length} bytes`);
     }
     
     // Basic validation that we got YAML content
@@ -131,9 +170,17 @@ async function useLocalFallback() {
       fs.mkdirSync(publicDir, { recursive: true });
     }
     
-    // Copy local file
+    // Copy local YAML file
     fs.copyFileSync(localYamlPath, targetYamlPath);
     console.log(`📁 Using local fallback: copied ${localYamlPath} to ${targetYamlPath}`);
+    
+    // Copy local PDF file if it exists
+    if (fs.existsSync(localPdfPath)) {
+      fs.copyFileSync(localPdfPath, targetPdfPath);
+      console.log(`📁 Using local fallback: copied ${localPdfPath} to ${targetPdfPath}`);
+    } else {
+      console.log(`⚠️  Local PDF file not found at ${localPdfPath}, skipping PDF copy`);
+    }
     
     return true;
   } catch (error) {
@@ -146,7 +193,8 @@ async function main() {
   console.log('🚀 Starting resume fetch process...');
   console.log(`📂 Repository: ${RESUME_REPO}`);
   console.log(`🌿 Branch: ${RESUME_BRANCH}`);
-  console.log(`📄 File: ${RESUME_FILE_PATH}`);
+  console.log(`📄 YAML File: ${RESUME_FILE_PATH}`);
+  console.log(`📄 PDF File: ${RESUME_PDF_PATH}`);
   console.log(`🔐 Token: ${GITHUB_TOKEN ? '✅ Provided' : '❌ Not provided (public repos only)'}`);
   console.log(`🔄 Local fallback: ${USE_LOCAL_FALLBACK ? 'enabled' : 'disabled'}`);
   console.log('');

@@ -45,6 +45,7 @@ jobs:
           VITE_RESUME_REPO: ${{ vars.RESUME_REPO || 'ahzs645/resume' }}
           VITE_RESUME_BRANCH: ${{ vars.RESUME_BRANCH || 'main' }}
           VITE_RESUME_FILE_PATH: ${{ vars.RESUME_FILE_PATH || 'Ahmad_Jalil_CV.yaml' }}
+          VITE_RESUME_PDF_PATH: ${{ vars.RESUME_PDF_PATH || 'Ahmad_Jalil_CV.pdf' }}
           VITE_USE_LOCAL_FALLBACK: ${{ vars.USE_LOCAL_FALLBACK || 'true' }}
           # Use GitHub's built-in token for same-user repositories, or custom token for cross-user access
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

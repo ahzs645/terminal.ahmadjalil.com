@@ -11,7 +11,7 @@
     "coverage": "vitest run --coverage",
     "prepare": "husky install",
     "prepare-cv": "node scripts/fetch-resume.mjs",
-    "prepare-cv-local": "cp Ahmad_Jalil_CV.yaml public/Ahmad_Jalil_CV.yaml",
+    "prepare-cv-local": "cp Ahmad_Jalil_CV.yaml public/Ahmad_Jalil_CV.yaml && cp Ahmad_Jalil_CV.pdf public/Ahmad_Jalil_CV.pdf",
     "test-resume-config": "node scripts/fetch-resume.mjs",
     "validate-resume-config": "node scripts/validate-resume-config.mjs",
     "lint": "eslint .",
