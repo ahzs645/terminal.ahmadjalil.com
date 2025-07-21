@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Wrapper } from "../styles/Output.styled";
 import { EduIntro, EduList } from "../styles/Education.styled";
-import { getCVData, CVData, formatDateRange } from "../../utils/cvData";
+import { getCVData, CVData, formatDateRange, flattenExperienceData } from "../../utils/cvData";
 import { termContext } from "../Terminal";
 
 const Experience: React.FC = () => {
@@ -32,7 +32,8 @@ const Experience: React.FC = () => {
     );
   }
 
-  const experienceData = cvData?.cv?.sections?.experience || [];
+  const rawExperienceData = cvData?.cv?.sections?.experience || [];
+  const experienceData = flattenExperienceData(rawExperienceData);
 
   // Helper function to get the company name, handling show_company_header logic
   const getCompanyName = (currentExp: any, index: number): string => {

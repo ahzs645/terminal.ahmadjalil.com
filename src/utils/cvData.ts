@@ -2,17 +2,25 @@ import yaml from 'js-yaml';
 import { config, getGitHubRawUrl } from '../config/environment';
 
 // CV Data Types
-export interface CVExperience {
-  company: string;
-  position: string;
-  location: string;
+export interface CVPosition {
+  title: string;
   start_date: string;
   end_date: string;
+  highlights: string[];
+}
+
+export interface CVExperience {
+  company: string;
+  position?: string; // For backward compatibility
+  location: string;
+  start_date?: string; // For backward compatibility
+  end_date?: string; // For backward compatibility
   show_date_in_position?: boolean;
   show_company_header?: boolean;
   company_date_range?: string;
   spacing_after?: string;
-  highlights: string[];
+  highlights?: string[]; // For backward compatibility
+  positions?: CVPosition[]; // New format with multiple positions
 }
 
 export interface CVEducation {
@@ -125,6 +133,69 @@ export const formatDateRange = (startDate: string, endDate: string): string => {
   };
 
   return `${formatDate(startDate)} - ${formatDate(endDate)}`;
+};
+
+// Utility function to flatten experience data to handle both old and new formats
+export const flattenExperienceData = (experiences: CVExperience[]): Array<{
+  company: string;
+  position: string;
+  location: string;
+  start_date: string;
+  end_date: string;
+  highlights: string[];
+  show_company_header?: boolean;
+  show_date_in_position?: boolean;
+  company_date_range?: string;
+  spacing_after?: string;
+}> => {
+  const flattened: Array<{
+    company: string;
+    position: string;
+    location: string;
+    start_date: string;
+    end_date: string;
+    highlights: string[];
+    show_company_header?: boolean;
+    show_date_in_position?: boolean;
+    company_date_range?: string;
+    spacing_after?: string;
+  }> = [];
+
+  experiences.forEach((exp) => {
+    if (exp.positions && exp.positions.length > 0) {
+      // New format with positions array
+      exp.positions.forEach((position, index) => {
+        flattened.push({
+          company: exp.company,
+          position: position.title,
+          location: exp.location,
+          start_date: position.start_date,
+          end_date: position.end_date,
+          highlights: position.highlights,
+          show_company_header: index === 0 ? exp.show_company_header : false,
+          show_date_in_position: exp.show_date_in_position,
+          company_date_range: exp.company_date_range,
+          spacing_after: index === exp.positions!.length - 1 ? exp.spacing_after : undefined,
+        });
+      });
+    } else if (exp.position && exp.start_date && exp.end_date) {
+      // Old format with individual position
+      flattened.push({
+        company: exp.company,
+        position: exp.position,
+        location: exp.location,
+        start_date: exp.start_date,
+        end_date: exp.end_date,
+        highlights: exp.highlights || [],
+        show_company_header: exp.show_company_header,
+        show_date_in_position: exp.show_date_in_position,
+        company_date_range: exp.company_date_range,
+        spacing_after: exp.spacing_after,
+      });
+    }
+  });
+
+  return flattened;
 };
 
 // Get CV data from YAML file (this will be loaded at runtime)
