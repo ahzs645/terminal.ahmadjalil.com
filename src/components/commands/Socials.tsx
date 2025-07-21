@@ -83,7 +83,9 @@ const Socials: React.FC = () => {
       })() : (
         <div>No social links found.</div>
       )}
-      <Usage cmd="socials" marginY />
+      <div style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#666' }}>
+        Use 'socials go &lt;social-no&gt;' to visit social media profile.
+      </div>
     </HelpWrapper>
   );
 };

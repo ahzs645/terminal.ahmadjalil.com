@@ -42,7 +42,9 @@ const Themes: React.FC = () => {
           <ThemeSpan key={myTheme}>{myTheme}</ThemeSpan>
         ))}
       </ThemesWrapper>
-      <Usage cmd="themes" marginY />
+      <div style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#666' }}>
+        Use 'themes set &lt;theme-name&gt;' to change the terminal theme.
+      </div>
     </Wrapper>
   );
 };

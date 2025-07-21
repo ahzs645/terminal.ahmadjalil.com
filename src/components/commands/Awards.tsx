@@ -109,8 +109,7 @@ const Awards: React.FC = () => {
           );
         })}
         <div style={{ marginTop: '1rem', color: '#666', fontSize: '0.9rem' }}>
-          Usage: awards details &#60;number&#62; <br />
-          eg: awards details 1
+          Use 'awards details &lt;number&gt;' to view detailed information for a specific award.
         </div>
       </Wrapper>
     );

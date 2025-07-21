@@ -10,6 +10,7 @@ import {
   ProjectsIntro,
   ProjectTitle,
 } from "../styles/Projects.styled";
+import { Wrapper } from "../styles/Output.styled";
 import { termContext } from "../Terminal";
 import Usage from "../Usage";
 import { getCVData, CVProject } from "../../utils/cvData";
@@ -65,7 +66,7 @@ const Projects: React.FC = () => {
   return arg.length > 0 || arg.length > 2 ? (
     checkArg()
   ) : (
-    <div data-testid="projects">
+    <Wrapper data-testid="projects">
       <ProjectsIntro>
         "Talk is cheap. Show me the code"? I got you. <br />
         Here are some of my projects you shouldn't miss
@@ -80,8 +81,10 @@ const Projects: React.FC = () => {
       )) : (
         <div>No projects found.</div>
       )}
-      <Usage cmd="projects" marginY />
-    </div>
+      <div style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#666' }}>
+        Use 'projects go &lt;project-no&gt;' to view project details or visit project link.
+      </div>
+    </Wrapper>
   );
 };
 

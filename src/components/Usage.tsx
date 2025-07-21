@@ -13,10 +13,15 @@ const arg = {
 
 const Usage: React.FC<Props> = ({ cmd, marginY = false }) => {
   const action = cmd === "themes" ? "set" : "go";
+  const description = cmd === "themes" 
+    ? "change the terminal theme" 
+    : cmd === "projects" 
+    ? "view project details or visit project link"
+    : "visit social media profile";
+    
   return (
     <UsageDiv data-testid={`${cmd}-invalid-arg`} marginY={marginY}>
-      Usage: {cmd} {action} &#60;{arg[cmd].placeholder}&#62; <br />
-      eg: {cmd} {action} {arg[cmd].example}
+      Use '{cmd} {action} &lt;{arg[cmd].placeholder}&gt;' to {description}.
     </UsageDiv>
   );
 };
