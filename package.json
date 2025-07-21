@@ -14,6 +14,8 @@
     "prepare-cv-local": "cp Ahmad_Jalil_CV.yaml public/Ahmad_Jalil_CV.yaml && cp Ahmad_Jalil_CV.pdf public/Ahmad_Jalil_CV.pdf",
     "test-resume-config": "node scripts/fetch-resume.mjs",
     "validate-resume-config": "node scripts/validate-resume-config.mjs",
+    "replace-templates": "./scripts/replace-templates.sh",
+    "build:local": "./scripts/replace-templates.sh && pnpm build",
     "lint": "eslint .",
     "format:check": "prettier --check .",
     "format": "prettier --write ."

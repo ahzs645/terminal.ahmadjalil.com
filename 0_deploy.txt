@@ -1,0 +1,438 @@
+﻿2025-07-21T03:56:29.1834141Z Current runner version: '2.326.0'
+2025-07-21T03:56:29.1858732Z ##[group]Runner Image Provisioner
+2025-07-21T03:56:29.1859549Z Hosted Compute Agent
+2025-07-21T03:56:29.1860071Z Version: 20250711.363
+2025-07-21T03:56:29.1860850Z Commit: 6785254374ce925a23743850c1cb91912ce5c14c
+2025-07-21T03:56:29.1861539Z Build Date: 2025-07-11T20:04:25Z
+2025-07-21T03:56:29.1862131Z ##[endgroup]
+2025-07-21T03:56:29.1862676Z ##[group]Operating System
+2025-07-21T03:56:29.1863258Z Ubuntu
+2025-07-21T03:56:29.1863731Z 24.04.2
+2025-07-21T03:56:29.1864250Z LTS
+2025-07-21T03:56:29.1865045Z ##[endgroup]
+2025-07-21T03:56:29.1865553Z ##[group]Runner Image
+2025-07-21T03:56:29.1866195Z Image: ubuntu-24.04
+2025-07-21T03:56:29.1866708Z Version: 20250710.1.0
+2025-07-21T03:56:29.1867727Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250710.1/images/ubuntu/Ubuntu2404-Readme.md
+2025-07-21T03:56:29.1869309Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250710.1
+2025-07-21T03:56:29.1870288Z ##[endgroup]
+2025-07-21T03:56:29.1871386Z ##[group]GITHUB_TOKEN Permissions
+2025-07-21T03:56:29.1873170Z Contents: read
+2025-07-21T03:56:29.1873841Z Metadata: read
+2025-07-21T03:56:29.1874382Z Pages: write
+2025-07-21T03:56:29.1875053Z ##[endgroup]
+2025-07-21T03:56:29.1876951Z Secret source: Actions
+2025-07-21T03:56:29.1877751Z Prepare workflow directory
+2025-07-21T03:56:29.2195344Z Prepare all required actions
+2025-07-21T03:56:29.2233057Z Getting action download info
+2025-07-21T03:56:29.5727643Z ##[group]Download immutable action package 'actions/checkout@v4'
+2025-07-21T03:56:29.5728754Z Version: 4.2.2
+2025-07-21T03:56:29.5729794Z Digest: sha256:ccb2698953eaebd21c7bf6268a94f9c26518a7e38e27e0b83c1fe1ad049819b1
+2025-07-21T03:56:29.5730896Z Source commit SHA: 11bd71901bbe5b1630ceea73d27597364c9af683
+2025-07-21T03:56:29.5731681Z ##[endgroup]
+2025-07-21T03:56:30.0573696Z ##[group]Download immutable action package 'actions/setup-node@v4'
+2025-07-21T03:56:30.0574575Z Version: 4.4.0
+2025-07-21T03:56:30.0575734Z Digest: sha256:9427cefe82346e992fb5b949e3569b39d537ae41aa3086483b14eceebfc16bc1
+2025-07-21T03:56:30.0576766Z Source commit SHA: 49933ea5288caeca8642d1e84afbd3f7d6820020
+2025-07-21T03:56:30.0577531Z ##[endgroup]
+2025-07-21T03:56:30.1989189Z Download action repository 'pnpm/action-setup@v4' (SHA:a7487c7e89a18df4991f7f222e4898a00d66ddda)
+2025-07-21T03:56:30.4132540Z ##[group]Download immutable action package 'actions/configure-pages@v4'
+2025-07-21T03:56:30.4133503Z Version: 4.0.0
+2025-07-21T03:56:30.4134301Z Digest: sha256:95f920ee91072a3e9596eff2a708d14f0fefa72b4770cbf7902965dfc6b8de4c
+2025-07-21T03:56:30.4135560Z Source commit SHA: 1f0c5cde4bc74cd7e1254d0cb4de8d49e9068c7d
+2025-07-21T03:56:30.4136358Z ##[endgroup]
+2025-07-21T03:56:30.5452862Z ##[group]Download immutable action package 'actions/upload-pages-artifact@v3'
+2025-07-21T03:56:30.5453815Z Version: 3.0.1
+2025-07-21T03:56:30.5454610Z Digest: sha256:aa65de5e734350e024ca30fe125144b6260e68160e01349fc79f7e321ec35490
+2025-07-21T03:56:30.5456015Z Source commit SHA: 56afc609e74202658d3ffba0e8f6dda462b719fa
+2025-07-21T03:56:30.5456854Z ##[endgroup]
+2025-07-21T03:56:30.6397979Z ##[group]Download immutable action package 'actions/deploy-pages@v4'
+2025-07-21T03:56:30.6398970Z Version: 4.0.5
+2025-07-21T03:56:30.6400377Z Digest: sha256:6c3db754d8de3353b3b6ae87dfde94a016fd0980c05e9ccc6d9a16a9148b054e
+2025-07-21T03:56:30.6401678Z Source commit SHA: d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
+2025-07-21T03:56:30.6402493Z ##[endgroup]
+2025-07-21T03:56:30.9370399Z Getting action download info
+2025-07-21T03:56:31.0426341Z ##[group]Download immutable action package 'actions/upload-artifact@v4'
+2025-07-21T03:56:31.0427685Z Version: 4.6.2
+2025-07-21T03:56:31.0429005Z Digest: sha256:290722aa3281d5caf23d0acdc3dbeb3424786a1a01a9cc97e72f147225e37c38
+2025-07-21T03:56:31.0430656Z Source commit SHA: ea165f8d65b6e75b540449e92b4886f43607fa02
+2025-07-21T03:56:31.0431752Z ##[endgroup]
+2025-07-21T03:56:31.2334535Z Complete job name: deploy
+2025-07-21T03:56:31.3123977Z ##[group]Run actions/checkout@v4
+2025-07-21T03:56:31.3125738Z with:
+2025-07-21T03:56:31.3126570Z   repository: ahzs645/terminal.ahmadjalil.com
+2025-07-21T03:56:31.3127874Z   token: ***
+2025-07-21T03:56:31.3128586Z   ssh-strict: true
+2025-07-21T03:56:31.3129336Z   ssh-user: git
+2025-07-21T03:56:31.3130105Z   persist-credentials: true
+2025-07-21T03:56:31.3130965Z   clean: true
+2025-07-21T03:56:31.3131733Z   sparse-checkout-cone-mode: true
+2025-07-21T03:56:31.3132666Z   fetch-depth: 1
+2025-07-21T03:56:31.3133409Z   fetch-tags: false
+2025-07-21T03:56:31.3134185Z   show-progress: true
+2025-07-21T03:56:31.3135267Z   lfs: false
+2025-07-21T03:56:31.3135998Z   submodules: false
+2025-07-21T03:56:31.3136782Z   set-safe-directory: true
+2025-07-21T03:56:31.3137920Z ##[endgroup]
+2025-07-21T03:56:31.4211060Z Syncing repository: ahzs645/terminal.ahmadjalil.com
+2025-07-21T03:56:31.4213525Z ##[group]Getting Git version info
+2025-07-21T03:56:31.4215365Z Working directory is '/home/runner/work/terminal.ahmadjalil.com/terminal.ahmadjalil.com'
+2025-07-21T03:56:31.4217547Z [command]/usr/bin/git version
+2025-07-21T03:56:31.5168568Z git version 2.50.1
+2025-07-21T03:56:31.5194923Z ##[endgroup]
+2025-07-21T03:56:31.5210501Z Temporarily overriding HOME='/home/runner/work/_temp/dfe3f02f-cbaf-4d67-a5be-13c1fcd961c0' before making global git config changes
+2025-07-21T03:56:31.5213193Z Adding repository directory to the temporary git global config as a safe directory
+2025-07-21T03:56:31.5222674Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/terminal.ahmadjalil.com/terminal.ahmadjalil.com
+2025-07-21T03:56:31.5296682Z Deleting the contents of '/home/runner/work/terminal.ahmadjalil.com/terminal.ahmadjalil.com'
+2025-07-21T03:56:31.5299619Z ##[group]Initializing the repository
+2025-07-21T03:56:31.5304071Z [command]/usr/bin/git init /home/runner/work/terminal.ahmadjalil.com/terminal.ahmadjalil.com
+2025-07-21T03:56:31.5814327Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-07-21T03:56:31.5816469Z hint: is subject to change. To configure the initial branch name to use in all
+2025-07-21T03:56:31.5818293Z hint: of your new repositories, which will suppress this warning, call:
+2025-07-21T03:56:31.5819651Z hint:
+2025-07-21T03:56:31.5820553Z hint: 	git config --global init.defaultBranch <name>
+2025-07-21T03:56:31.5821708Z hint:
+2025-07-21T03:56:31.5822777Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-07-21T03:56:31.5824577Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-07-21T03:56:31.5826109Z hint:
+2025-07-21T03:56:31.5826840Z hint: 	git branch -m <name>
+2025-07-21T03:56:31.5827685Z hint:
+2025-07-21T03:56:31.5828803Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-07-21T03:56:31.5855269Z Initialized empty Git repository in /home/runner/work/terminal.ahmadjalil.com/terminal.ahmadjalil.com/.git/
+2025-07-21T03:56:31.5865709Z [command]/usr/bin/git remote add origin https://github.com/ahzs645/terminal.ahmadjalil.com
+2025-07-21T03:56:31.5939224Z ##[endgroup]
+2025-07-21T03:56:31.5940558Z ##[group]Disabling automatic garbage collection
+2025-07-21T03:56:31.5942373Z [command]/usr/bin/git config --local gc.auto 0
+2025-07-21T03:56:31.5970394Z ##[endgroup]
+2025-07-21T03:56:31.5971613Z ##[group]Setting up auth
+2025-07-21T03:56:31.5976535Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-07-21T03:56:31.6006048Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-07-21T03:56:31.7792885Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-07-21T03:56:31.7821910Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-07-21T03:56:31.8037088Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-07-21T03:56:31.8077762Z ##[endgroup]
+2025-07-21T03:56:31.8080052Z ##[group]Fetching the repository
+2025-07-21T03:56:31.8088853Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +ab1cd5a04686d6186661199eacfcf94f80dd432f:refs/remotes/origin/main
+2025-07-21T03:56:32.0797610Z From https://github.com/ahzs645/terminal.ahmadjalil.com
+2025-07-21T03:56:32.0799980Z  * [new ref]         ab1cd5a04686d6186661199eacfcf94f80dd432f -> origin/main
+2025-07-21T03:56:32.0867041Z ##[endgroup]
+2025-07-21T03:56:32.0868859Z ##[group]Determining the checkout info
+2025-07-21T03:56:32.0870485Z ##[endgroup]
+2025-07-21T03:56:32.0874221Z [command]/usr/bin/git sparse-checkout disable
+2025-07-21T03:56:32.0958455Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-07-21T03:56:32.0987170Z ##[group]Checking out the ref
+2025-07-21T03:56:32.0990421Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-07-21T03:56:32.1103542Z Switched to a new branch 'main'
+2025-07-21T03:56:32.1106614Z branch 'main' set up to track 'origin/main'.
+2025-07-21T03:56:32.1113661Z ##[endgroup]
+2025-07-21T03:56:32.1146480Z [command]/usr/bin/git log -1 --format=%H
+2025-07-21T03:56:32.1167778Z ab1cd5a04686d6186661199eacfcf94f80dd432f
+2025-07-21T03:56:32.1513400Z ##[group]Run actions/setup-node@v4
+2025-07-21T03:56:32.1514320Z with:
+2025-07-21T03:56:32.1515208Z   node-version: 18
+2025-07-21T03:56:32.1515941Z   always-auth: false
+2025-07-21T03:56:32.1516693Z   check-latest: false
+2025-07-21T03:56:32.1517695Z   token: ***
+2025-07-21T03:56:32.1518373Z ##[endgroup]
+2025-07-21T03:56:32.3639386Z Found in cache @ /opt/hostedtoolcache/node/18.20.8/x64
+2025-07-21T03:56:32.3643439Z ##[group]Environment details
+2025-07-21T03:56:34.1213781Z node: v18.20.8
+2025-07-21T03:56:34.1214423Z npm: 10.8.2
+2025-07-21T03:56:34.1215008Z yarn: 1.22.22
+2025-07-21T03:56:34.1216366Z ##[endgroup]
+2025-07-21T03:56:34.1343756Z ##[group]Run pnpm/action-setup@v4
+2025-07-21T03:56:34.1344016Z with:
+2025-07-21T03:56:34.1344179Z   version: latest
+2025-07-21T03:56:34.1344362Z   dest: ~/setup-pnpm
+2025-07-21T03:56:34.1344544Z   run_install: null
+2025-07-21T03:56:34.1344939Z   package_json_file: package.json
+2025-07-21T03:56:34.1345166Z   standalone: false
+2025-07-21T03:56:34.1345347Z ##[endgroup]
+2025-07-21T03:56:34.1885005Z ##[group]Running self-installer...
+2025-07-21T03:56:34.7064995Z Progress: resolved 1, reused 0, downloaded 0, added 0
+2025-07-21T03:56:34.7178941Z Packages: +1
+2025-07-21T03:56:34.7179322Z +
+2025-07-21T03:56:35.1125546Z Progress: resolved 1, reused 0, downloaded 1, added 1, done
+2025-07-21T03:56:35.1382728Z 
+2025-07-21T03:56:35.1383156Z dependencies:
+2025-07-21T03:56:35.1383553Z + pnpm 10.13.1
+2025-07-21T03:56:35.1383746Z 
+2025-07-21T03:56:35.1417252Z Done in 793ms
+2025-07-21T03:56:35.1588222Z ##[endgroup]
+2025-07-21T03:56:35.1592033Z Installation Completed!
+2025-07-21T03:56:35.1679892Z ##[group]Run pnpm install
+2025-07-21T03:56:35.1680188Z [36;1mpnpm install[0m
+2025-07-21T03:56:35.1714606Z shell: /usr/bin/bash -e {0}
+2025-07-21T03:56:35.1715969Z env:
+2025-07-21T03:56:35.1716201Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2025-07-21T03:56:35.1716527Z ##[endgroup]
+2025-07-21T03:56:35.7698209Z Lockfile is up to date, resolution step is skipped
+2025-07-21T03:56:35.8540811Z Progress: resolved 1, reused 0, downloaded 0, added 0
+2025-07-21T03:56:35.9748066Z Packages: +748
+2025-07-21T03:56:35.9748984Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2025-07-21T03:56:36.8548099Z Progress: resolved 748, reused 0, downloaded 142, added 113
+2025-07-21T03:56:37.8570822Z Progress: resolved 748, reused 0, downloaded 474, added 466
+2025-07-21T03:56:38.5993286Z Progress: resolved 748, reused 0, downloaded 748, added 748, done
+2025-07-21T03:56:38.9495560Z 
+2025-07-21T03:56:38.9496077Z dependencies:
+2025-07-21T03:56:38.9496608Z + dotenv 17.2.0
+2025-07-21T03:56:38.9497326Z + js-yaml 4.1.0
+2025-07-21T03:56:38.9497728Z + lodash 4.17.21
+2025-07-21T03:56:38.9498059Z + react 18.3.1
+2025-07-21T03:56:38.9498404Z + react-dom 18.3.1
+2025-07-21T03:56:38.9498799Z + styled-components 5.3.11
+2025-07-21T03:56:38.9499254Z + styled-normalize 8.1.1
+2025-07-21T03:56:38.9499503Z 
+2025-07-21T03:56:38.9499658Z devDependencies:
+2025-07-21T03:56:38.9500122Z + @testing-library/jest-dom 5.17.0
+2025-07-21T03:56:38.9500644Z + @testing-library/react 14.3.1
+2025-07-21T03:56:38.9501176Z + @testing-library/user-event 14.6.1
+2025-07-21T03:56:38.9501673Z + @types/js-yaml 4.0.9
+2025-07-21T03:56:38.9502070Z + @types/lodash 4.17.20
+2025-07-21T03:56:38.9502501Z + @types/react 18.3.23
+2025-07-21T03:56:38.9502901Z + @types/react-dom 18.3.7
+2025-07-21T03:56:38.9503366Z + @types/styled-components 5.1.34
+2025-07-21T03:56:38.9503918Z + @types/testing-library__jest-dom 5.14.9
+2025-07-21T03:56:38.9504448Z + @typescript-eslint/eslint-plugin 5.62.0
+2025-07-21T03:56:38.9505129Z + @typescript-eslint/parser 5.62.0
+2025-07-21T03:56:38.9505579Z + @vitejs/plugin-react 4.6.0
+2025-07-21T03:56:38.9505970Z + @vitest/coverage-c8 0.31.4
+2025-07-21T03:56:38.9506362Z + eslint 8.57.1
+2025-07-21T03:56:38.9506752Z + eslint-config-prettier 8.10.0
+2025-07-21T03:56:38.9507292Z + eslint-import-resolver-typescript 3.10.1
+2025-07-21T03:56:38.9507787Z + eslint-plugin-import 2.32.0
+2025-07-21T03:56:38.9508243Z + eslint-plugin-markdown 3.0.1
+2025-07-21T03:56:38.9508710Z + eslint-plugin-prettier 4.2.1
+2025-07-21T03:56:38.9509130Z + eslint-plugin-react 7.37.5
+2025-07-21T03:56:38.9509590Z + eslint-plugin-react-hooks 4.6.2
+2025-07-21T03:56:38.9509971Z + husky 8.0.3
+2025-07-21T03:56:38.9510248Z + jsdom 22.1.0
+2025-07-21T03:56:38.9510600Z + lint-staged 13.3.0
+2025-07-21T03:56:38.9510914Z + prettier 2.8.8
+2025-07-21T03:56:38.9511246Z + typescript 5.8.3
+2025-07-21T03:56:38.9511553Z + vite 4.5.14
+2025-07-21T03:56:38.9511881Z + vite-plugin-pwa 0.14.7
+2025-07-21T03:56:38.9512248Z + vitest 0.31.4
+2025-07-21T03:56:38.9512437Z 
+2025-07-21T03:56:38.9513294Z ╭ Warning ─────────────────────────────────────────────────────────────────────╮
+2025-07-21T03:56:38.9514140Z │                                                                              │
+2025-07-21T03:56:38.9515321Z │   Ignored build scripts: esbuild, unrs-resolver.                             │
+2025-07-21T03:56:38.9516517Z │   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+2025-07-21T03:56:38.9517560Z │   to run scripts.                                                            │
+2025-07-21T03:56:38.9518436Z │                                                                              │
+2025-07-21T03:56:38.9519390Z ╰──────────────────────────────────────────────────────────────────────────────╯
+2025-07-21T03:56:38.9519784Z 
+2025-07-21T03:56:38.9645553Z 
+2025-07-21T03:56:38.9646475Z > terminal-portfolio@1.3.1 prepare /home/runner/work/terminal.ahmadjalil.com/terminal.ahmadjalil.com
+2025-07-21T03:56:38.9647314Z > husky install
+2025-07-21T03:56:38.9647742Z 
+2025-07-21T03:56:39.0094569Z husky - Git hooks installed
+2025-07-21T03:56:39.0301030Z Done in 3.8s using pnpm v10.13.1
+2025-07-21T03:56:39.0543243Z ##[group]Run echo "Copying Ahmad_Jalil_CV.yaml to public directory..."
+2025-07-21T03:56:39.0543725Z [36;1mecho "Copying Ahmad_Jalil_CV.yaml to public directory..."[0m
+2025-07-21T03:56:39.0544097Z [36;1mcp Ahmad_Jalil_CV.yaml public/Ahmad_Jalil_CV.yaml[0m
+2025-07-21T03:56:39.0544389Z [36;1mecho "Verifying file was copied:"[0m
+2025-07-21T03:56:39.0544663Z [36;1mls -la public/Ahmad_Jalil_CV.yaml[0m
+2025-07-21T03:56:39.0573022Z shell: /usr/bin/bash -e {0}
+2025-07-21T03:56:39.0573248Z env:
+2025-07-21T03:56:39.0573471Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2025-07-21T03:56:39.0573766Z ##[endgroup]
+2025-07-21T03:56:39.0620066Z Copying Ahmad_Jalil_CV.yaml to public directory...
+2025-07-21T03:56:39.0634281Z Verifying file was copied:
+2025-07-21T03:56:39.0647345Z -rw-r--r-- 1 runner docker 17451 Jul 21 03:56 public/Ahmad_Jalil_CV.yaml
+2025-07-21T03:56:39.0669887Z ##[group]Run pnpm build
+2025-07-21T03:56:39.0670118Z [36;1mpnpm build[0m
+2025-07-21T03:56:39.0694927Z shell: /usr/bin/bash -e {0}
+2025-07-21T03:56:39.0695146Z env:
+2025-07-21T03:56:39.0695436Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2025-07-21T03:56:39.0695736Z ##[endgroup]
+2025-07-21T03:56:39.4510260Z 
+2025-07-21T03:56:39.4511288Z > terminal-portfolio@1.3.1 build /home/runner/work/terminal.ahmadjalil.com/terminal.ahmadjalil.com
+2025-07-21T03:56:39.4512340Z > node scripts/fetch-resume.mjs && tsc && vite build
+2025-07-21T03:56:39.4512735Z 
+2025-07-21T03:56:39.5178007Z [dotenv@17.2.0] injecting env (0) from .env.local (tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' })
+2025-07-21T03:56:39.5181549Z 🔄 Fetching resume from: https://raw.githubusercontent.com/ahzs645/resume/main/Ahmad_Jalil_CV.yaml
+2025-07-21T03:56:39.5183275Z 🔄 Fetching PDF from: https://raw.githubusercontent.com/ahzs645/resume/main/Ahmad_Jalil_CV.pdf
+2025-07-21T03:56:39.5184355Z 🚀 Starting resume fetch process...
+2025-07-21T03:56:39.5185210Z 📂 Repository: ahzs645/resume
+2025-07-21T03:56:39.5185683Z 🌿 Branch: main
+2025-07-21T03:56:39.5186178Z 📄 YAML File: Ahmad_Jalil_CV.yaml
+2025-07-21T03:56:39.5186738Z 📄 PDF File: Ahmad_Jalil_CV.pdf
+2025-07-21T03:56:39.5187374Z 🔐 Token: ❌ Not provided (public repos only)
+2025-07-21T03:56:39.5187960Z 🔄 Local fallback: enabled
+2025-07-21T03:56:39.5188226Z 
+2025-07-21T03:56:39.5188875Z 📡 Using Raw URL method
+2025-07-21T03:56:39.5190026Z 🔗 Fetching YAML: https://raw.githubusercontent.com/ahzs645/resume/main/Ahmad_Jalil_CV.yaml
+2025-07-21T03:56:39.5191442Z � Fetching PDF: https://raw.githubusercontent.com/ahzs645/resume/main/Ahmad_Jalil_CV.pdf
+2025-07-21T03:56:39.5192310Z �🔐 Auth header: None
+2025-07-21T03:56:39.6763183Z 📊 YAML Response status: 404 Not Found
+2025-07-21T03:56:39.6817380Z 📄 YAML Error response: 404: Not Found
+2025-07-21T03:56:39.6818786Z ❌ Failed to fetch from GitHub: Repository or file not found. Please check:
+2025-07-21T03:56:39.6819872Z   - Repository: ahzs645/resume
+2025-07-21T03:56:39.6820309Z   - Branch: main
+2025-07-21T03:56:39.6820669Z   - File: Ahmad_Jalil_CV.yaml
+2025-07-21T03:56:39.6821345Z   - Repository is private (add VITE_GITHUB_TOKEN to .env.local)
+2025-07-21T03:56:39.6822049Z 🔄 Trying local fallback...
+2025-07-21T03:56:39.6825532Z 📁 Using local fallback: copied /home/runner/work/terminal.ahmadjalil.com/terminal.ahmadjalil.com/Ahmad_Jalil_CV.yaml to /home/runner/work/terminal.ahmadjalil.com/terminal.ahmadjalil.com/public/Ahmad_Jalil_CV.yaml
+2025-07-21T03:56:39.6829144Z 📁 Using local fallback: copied /home/runner/work/terminal.ahmadjalil.com/terminal.ahmadjalil.com/Ahmad_Jalil_CV.pdf to /home/runner/work/terminal.ahmadjalil.com/terminal.ahmadjalil.com/public/Ahmad_Jalil_CV.pdf
+2025-07-21T03:56:39.6830989Z 🎉 Resume fetch process completed successfully!
+2025-07-21T03:56:43.4280718Z [36mvite v4.5.14 [32mbuilding for production...[36m[39m
+2025-07-21T03:56:43.4671783Z transforming...
+2025-07-21T03:56:45.0424336Z [32m✓[39m 94 modules transformed.
+2025-07-21T03:56:45.2299879Z rendering chunks...
+2025-07-21T03:56:45.2371447Z computing gzip size...
+2025-07-21T03:56:45.2528266Z [2mdist/[22m[32mregisterSW.js             [39m[1m[2m  0.13 kB[22m[1m[22m
+2025-07-21T03:56:45.2529367Z [2mdist/[22m[32mmanifest.webmanifest      [39m[1m[2m  0.16 kB[22m[1m[22m
+2025-07-21T03:56:45.2530246Z [2mdist/[22m[32mindex.html                [39m[1m[2m  2.84 kB[22m[1m[22m[2m │ gzip:   0.90 kB[22m
+2025-07-21T03:56:45.2531206Z [2mdist/[22m[2massets/[22m[36mindex-77e7c307.js  [39m[1m[2m334.76 kB[22m[1m[22m[2m │ gzip: 110.64 kB[22m
+2025-07-21T03:56:47.0048140Z 
+2025-07-21T03:56:47.0049181Z [36mPWA v0.14.7[39m
+2025-07-21T03:56:47.0050069Z mode      [35mgenerateSW[39m
+2025-07-21T03:56:47.0052211Z precache  [32m4 entries[39m [2m(330.26 KiB)[22m
+2025-07-21T03:56:47.0054384Z files generated
+2025-07-21T03:56:47.0055129Z   [2mdist/sw.js[22m
+2025-07-21T03:56:47.0056368Z   [2mdist/workbox-1616146e.js[22m
+2025-07-21T03:56:47.0057314Z [32m✓ built in 3.58s[39m
+2025-07-21T03:56:47.0907119Z ##[group]Run echo "Checking if YAML file exists in dist directory:"
+2025-07-21T03:56:47.0907906Z [36;1mecho "Checking if YAML file exists in dist directory:"[0m
+2025-07-21T03:56:47.0908642Z [36;1mls -la dist/Ahmad_Jalil_CV.yaml || echo "YAML file not found in dist!"[0m
+2025-07-21T03:56:47.0948262Z shell: /usr/bin/bash -e {0}
+2025-07-21T03:56:47.0948628Z env:
+2025-07-21T03:56:47.0949009Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2025-07-21T03:56:47.0949497Z ##[endgroup]
+2025-07-21T03:56:47.1012632Z Checking if YAML file exists in dist directory:
+2025-07-21T03:56:47.1025755Z -rw-r--r-- 1 runner docker 17451 Jul 21 03:56 dist/Ahmad_Jalil_CV.yaml
+2025-07-21T03:56:47.1048320Z ##[group]Run echo "terminal.ahmadjalil.com" > ./dist/CNAME
+2025-07-21T03:56:47.1048695Z [36;1mecho "terminal.ahmadjalil.com" > ./dist/CNAME[0m
+2025-07-21T03:56:47.1073329Z shell: /usr/bin/bash -e {0}
+2025-07-21T03:56:47.1073557Z env:
+2025-07-21T03:56:47.1073792Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2025-07-21T03:56:47.1074081Z ##[endgroup]
+2025-07-21T03:56:47.1170787Z ##[group]Run actions/configure-pages@v4
+2025-07-21T03:56:47.1171045Z with:
+2025-07-21T03:56:47.1171332Z   token: ***
+2025-07-21T03:56:47.1171503Z   enablement: false
+2025-07-21T03:56:47.1171677Z env:
+2025-07-21T03:56:47.1171885Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2025-07-21T03:56:47.1172180Z ##[endgroup]
+2025-07-21T03:56:47.3489650Z ##[group]Run actions/upload-pages-artifact@v3
+2025-07-21T03:56:47.3489943Z with:
+2025-07-21T03:56:47.3490103Z   path: ./dist
+2025-07-21T03:56:47.3490285Z   name: github-pages
+2025-07-21T03:56:47.3490473Z   retention-days: 1
+2025-07-21T03:56:47.3490637Z env:
+2025-07-21T03:56:47.3490846Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2025-07-21T03:56:47.3491115Z   GITHUB_PAGES: true
+2025-07-21T03:56:47.3491292Z ##[endgroup]
+2025-07-21T03:56:47.3558544Z ##[group]Run echo ::group::Archive artifact
+2025-07-21T03:56:47.3558857Z [36;1mecho ::group::Archive artifact[0m
+2025-07-21T03:56:47.3559082Z [36;1mtar \[0m
+2025-07-21T03:56:47.3559308Z [36;1m  --dereference --hard-dereference \[0m
+2025-07-21T03:56:47.3559572Z [36;1m  --directory "$INPUT_PATH" \[0m
+2025-07-21T03:56:47.3559838Z [36;1m  -cvf "$RUNNER_TEMP/artifact.tar" \[0m
+2025-07-21T03:56:47.3560083Z [36;1m  --exclude=.git \[0m
+2025-07-21T03:56:47.3560288Z [36;1m  --exclude=.github \[0m
+2025-07-21T03:56:47.3560517Z [36;1m  .[0m
+2025-07-21T03:56:47.3560686Z [36;1mecho ::endgroup::[0m
+2025-07-21T03:56:47.3597727Z shell: /usr/bin/sh -e {0}
+2025-07-21T03:56:47.3597943Z env:
+2025-07-21T03:56:47.3598160Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2025-07-21T03:56:47.3598441Z   GITHUB_PAGES: true
+2025-07-21T03:56:47.3598621Z   INPUT_PATH: ./dist
+2025-07-21T03:56:47.3598796Z ##[endgroup]
+2025-07-21T03:56:47.3647185Z ##[group]Archive artifact
+2025-07-21T03:56:47.3659993Z ./
+2025-07-21T03:56:47.3660304Z ./assets/
+2025-07-21T03:56:47.3660905Z ./assets/index-77e7c307.js
+2025-07-21T03:56:47.3664193Z ./site.webmanifest
+2025-07-21T03:56:47.3664562Z ./favicon-32x32.png
+2025-07-21T03:56:47.3665099Z ./Ahmad_Jalil_CV.pdf
+2025-07-21T03:56:47.3665428Z ./CNAME
+2025-07-21T03:56:47.3665742Z ./workbox-1616146e.js
+2025-07-21T03:56:47.3666111Z ./maskable-icons/
+2025-07-21T03:56:47.3666551Z ./maskable-icons/maskable_icon_x96.png
+2025-07-21T03:56:47.3667106Z ./maskable-icons/maskable_icon_x192.png
+2025-07-21T03:56:47.3667665Z ./maskable-icons/maskable_icon_x48.png
+2025-07-21T03:56:47.3668194Z ./maskable-icons/maskable_icon_x128.png
+2025-07-21T03:56:47.3668723Z ./maskable-icons/maskable_icon_x72.png
+2025-07-21T03:56:47.3669237Z ./maskable-icons/maskable_icon_x384.png
+2025-07-21T03:56:47.3669769Z ./maskable-icons/maskable_icon_x512.png
+2025-07-21T03:56:47.3670183Z ./sw.js
+2025-07-21T03:56:47.3670492Z ./manifest.webmanifest
+2025-07-21T03:56:47.3670876Z ./favicon-16x16.png
+2025-07-21T03:56:47.3671185Z ./index.html
+2025-07-21T03:56:47.3671526Z ./safari-pinned-tab.svg
+2025-07-21T03:56:47.3672098Z ./lighthouse-result.svg
+2025-07-21T03:56:47.3672493Z ./sat-naing-terminal-og.png
+2025-07-21T03:56:47.3672910Z ./apple-touch-icon.png
+2025-07-21T03:56:47.3673254Z ./favicon.ico
+2025-07-21T03:56:47.3673579Z ./mstile-150x150.png
+2025-07-21T03:56:47.3673918Z ./registerSW.js
+2025-07-21T03:56:47.3674252Z ./Ahmad_Jalil_CV.yaml
+2025-07-21T03:56:47.3674604Z ./browserconfig.xml
+2025-07-21T03:56:47.3677553Z ##[endgroup]
+2025-07-21T03:56:47.3737113Z ##[group]Run actions/upload-artifact@v4
+2025-07-21T03:56:47.3737350Z with:
+2025-07-21T03:56:47.3737510Z   name: github-pages
+2025-07-21T03:56:47.3737727Z   path: /home/runner/work/_temp/artifact.tar
+2025-07-21T03:56:47.3737972Z   retention-days: 1
+2025-07-21T03:56:47.3738161Z   if-no-files-found: error
+2025-07-21T03:56:47.3738359Z   compression-level: 6
+2025-07-21T03:56:47.3738542Z   overwrite: false
+2025-07-21T03:56:47.3738720Z   include-hidden-files: false
+2025-07-21T03:56:47.3738923Z env:
+2025-07-21T03:56:47.3739122Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2025-07-21T03:56:47.3739399Z   GITHUB_PAGES: true
+2025-07-21T03:56:47.3739574Z ##[endgroup]
+2025-07-21T03:56:47.5826630Z With the provided path, there will be 1 file uploaded
+2025-07-21T03:56:47.5831108Z Artifact name is valid!
+2025-07-21T03:56:47.5832402Z Root directory input is valid!
+2025-07-21T03:56:47.6844672Z Beginning upload of artifact content to blob storage
+2025-07-21T03:56:47.8183814Z Uploaded bytes 530800
+2025-07-21T03:56:47.8366921Z Finished uploading artifact content to blob storage!
+2025-07-21T03:56:47.8369851Z SHA256 digest of uploaded artifact zip is fcd01137734da3e26396b7a9b91f20dab0a9513288dc46bbf7ee79fdd20fa9dc
+2025-07-21T03:56:47.8371682Z Finalizing artifact upload
+2025-07-21T03:56:47.9281645Z Artifact github-pages.zip successfully finalized. Artifact ID 3574390358
+2025-07-21T03:56:47.9283373Z Artifact github-pages has been successfully uploaded! Final size is 530800 bytes. Artifact ID is 3574390358
+2025-07-21T03:56:47.9290326Z Artifact download URL: https://github.com/ahzs645/terminal.ahmadjalil.com/actions/runs/16408142021/artifacts/3574390358
+2025-07-21T03:56:47.9432717Z ##[group]Run actions/deploy-pages@v4
+2025-07-21T03:56:47.9432976Z with:
+2025-07-21T03:56:47.9433229Z   token: ***
+2025-07-21T03:56:47.9433403Z   timeout: 600000
+2025-07-21T03:56:47.9433579Z   error_count: 10
+2025-07-21T03:56:47.9433760Z   reporting_interval: 5000
+2025-07-21T03:56:47.9433983Z   artifact_name: github-pages
+2025-07-21T03:56:47.9434199Z   preview: false
+2025-07-21T03:56:47.9434370Z env:
+2025-07-21T03:56:47.9434581Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2025-07-21T03:56:47.9435070Z   GITHUB_PAGES: true
+2025-07-21T03:56:47.9435254Z ##[endgroup]
+2025-07-21T03:56:48.2395759Z Fetching artifact metadata for "github-pages" in this workflow run
+2025-07-21T03:56:48.2984637Z Found 1 artifact(s)
+2025-07-21T03:56:48.2998073Z Creating Pages deployment with payload:
+2025-07-21T03:56:48.2998552Z {
+2025-07-21T03:56:48.2998798Z 	"artifact_id": 3574390358,
+2025-07-21T03:56:48.2999217Z 	"pages_build_version": "ab1cd5a04686d6186661199eacfcf94f80dd432f",
+2025-07-21T03:56:48.3030632Z 	"oidc_token": "***"
+2025-07-21T03:56:48.3030849Z }
+2025-07-21T03:56:48.5239683Z Created deployment for ab1cd5a04686d6186661199eacfcf94f80dd432f, ID: ab1cd5a04686d6186661199eacfcf94f80dd432f
+2025-07-21T03:56:53.5255387Z Getting Pages deployment status...
+2025-07-21T03:56:53.6119088Z Reported success!
+2025-07-21T03:56:53.6300307Z Post job cleanup.
+2025-07-21T03:56:53.6818700Z Pruning is unnecessary.
+2025-07-21T03:56:53.6892268Z Post job cleanup.
+2025-07-21T03:56:53.8506677Z Post job cleanup.
+2025-07-21T03:56:53.9429260Z [command]/usr/bin/git version
+2025-07-21T03:56:53.9464392Z git version 2.50.1
+2025-07-21T03:56:53.9517701Z Temporarily overriding HOME='/home/runner/work/_temp/44471b76-154b-4d7a-b2f2-a2753d726211' before making global git config changes
+2025-07-21T03:56:53.9519070Z Adding repository directory to the temporary git global config as a safe directory
+2025-07-21T03:56:53.9534025Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/terminal.ahmadjalil.com/terminal.ahmadjalil.com
+2025-07-21T03:56:53.9576203Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-07-21T03:56:53.9615186Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-07-21T03:56:53.9852826Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-07-21T03:56:53.9872981Z http.https://github.com/.extraheader
+2025-07-21T03:56:53.9885943Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-07-21T03:56:53.9915901Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-07-21T03:56:54.0232064Z Evaluate and set environment url
+2025-07-21T03:56:54.0235871Z Evaluated environment url: https://terminal.ahmadjalil.com/
+2025-07-21T03:56:54.0236779Z Cleaning up orphan processes
