@@ -44,8 +44,8 @@ const Projects: React.FC = () => {
     if (checkRedirect(rerender, currentCommand, "projects")) {
       projects.forEach((project, index) => {
         const projectIndex = index + 1;
-        if (projectIndex === parseInt(arg[1]) && project.link) {
-          window.open(project.link, "_blank");
+        if (projectIndex === parseInt(arg[1]) && project.url) {
+          window.open(project.url, "_blank");
         }
       });
     }
@@ -73,9 +73,9 @@ const Projects: React.FC = () => {
       </ProjectsIntro>
       {projects && projects.length > 0 ? projects.map((project, index) => (
         <ProjectContainer key={index}>
-          <ProjectTitle>{`${index + 1}. ${project.title}`}</ProjectTitle>
+          <ProjectTitle>{`${index + 1}. ${project.name}`}</ProjectTitle>
           <ProjectDesc>
-            {project.description}
+            {project.summary}
           </ProjectDesc>
         </ProjectContainer>
       )) : (

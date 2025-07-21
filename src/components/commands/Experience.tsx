@@ -34,13 +34,23 @@ const Experience: React.FC = () => {
 
   const experienceData = cvData?.cv?.sections?.experience || [];
 
-  // Helper function to get the company name, using previous company if current is empty
+  // Helper function to get the company name, handling show_company_header logic
   const getCompanyName = (currentExp: any, index: number): string => {
+    // If show_company_header is false, look backwards for the most recent company with show_company_header !== false
+    if (currentExp.show_company_header === false) {
+      for (let i = index - 1; i >= 0; i--) {
+        if (experienceData[i].company && experienceData[i].company.trim() !== "" && experienceData[i].show_company_header !== false) {
+          return experienceData[i].company;
+        }
+      }
+    }
+    
+    // Default behavior: use current company if available
     if (currentExp.company && currentExp.company.trim() !== "") {
       return currentExp.company;
     }
     
-    // Look backwards for the most recent non-empty company name
+    // Fallback: look backwards for the most recent non-empty company name
     for (let i = index - 1; i >= 0; i--) {
       if (experienceData[i].company && experienceData[i].company.trim() !== "") {
         return experienceData[i].company;

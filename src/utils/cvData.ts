@@ -8,8 +8,10 @@ export interface CVExperience {
   location: string;
   start_date: string;
   end_date: string;
-  show_date_in_position: boolean;
-  spacing_after: string;
+  show_date_in_position?: boolean;
+  show_company_header?: boolean;
+  company_date_range?: string;
+  spacing_after?: string;
   highlights: string[];
 }
 
@@ -62,10 +64,11 @@ export interface CVProfessionalDevelopment {
 }
 
 export interface CVProject {
-  title: string;
-  description: string;
-  link: string;
-  technologies: string[];
+  name: string;
+  date?: string;
+  url?: string;
+  summary: string;
+  highlights: string[];
 }
 
 export interface CVSocial {
