@@ -21,9 +21,8 @@ cv:
   sections:
     experience:
       - company: Northern Analytical Laboratory Services
+        position: Research Assistant
         location: Prince George, BC
-        show_date_in_position: true
-        company_date_range: "November 2020 – Present"
         positions:
           - title: Research Assistant
             start_date: 2022-09
@@ -52,9 +51,8 @@ cv:
           - Identified and analyzed key stakeholders in the age-tech and healthcare sectors, including government agencies, healthcare providers, technology companies, and advocacy groups
       
       - company: Northern Health
+        position: Informatics Specialists
         location: Prince George, BC
-        show_date_in_position: true
-        company_date_range: "May 2024 – Present"
         positions:
           - title: Informatics Specialists
             start_date: 2024-12
@@ -80,6 +78,39 @@ cv:
         spacing_after: different_company
         highlights:
           - Contributed to the creation of an online resource hub for nutrition students, providing access to lecture notes, study guides, and additional learning materials
+      
+      - company: Safeway Pharmacy
+        position: Pharmacy Assistant
+        location: Prince George, BC / Williams Lake, BC
+        start_date: 2017-08
+        end_date: 2018-09
+        show: false
+        highlights:
+          - Assist licensed pharmacists in dispensing medications and providing customer service
+          - Receive and process prescription orders accurately and efficiently
+          - Maintain inventory of medications and supplies, ensuring proper storage and organization
+          - Prepare prescription labels and packages for patients
+          - Perform administrative tasks such as filing, data entry, and insurance billing
+          - Collaborate with healthcare professionals and assist in medication therapy management
+          - Ensure compliance with regulatory guidelines and standards
+          - Uphold excellent customer service by addressing patient needs and resolving issues effectively
+          - Filled prescriptions
+          - Checked Narcotics Inventory
+          - Checked expiry of inventory
+      
+      - company: Safeway
+        position: File Management
+        location: Williams Lake, BC
+        start_date: 2015-06
+        end_date: 2017-08
+        show: false
+        highlights:
+          - Set prices for Items in store and changed ticket prices
+          - Accepted Shipments
+          - Upload prices to Registers
+          - File management roles, including price and ticket updating
+          - Involved in the stocking and general cashiering as well as with the Florist, and Baker, and Deli department
+          - Provided Customer Service
 
     volunteer:
       - company: St. Vincent De Paul
@@ -141,6 +172,18 @@ cv:
           - Assist recreation therapists and engage in activities with residents at Rainbow Lodge & Gateway, a long-term care home and facilities, enhancing their daily lives and well-being
           - Provide emotional support and reassurance to dementia patients, helping them feel more secure and oriented in their environment
           - Deepen my understanding of patient-centered medicine through direct interactions, learning about residents' needs and perspectives
+      
+      - company: Northern Undergraduate Student Society
+        position: Director at Large
+        location: Prince George, BC
+        start_date: 2021-05
+        end_date: 2022-05
+        show: false
+        highlights:
+          - Served and actively participated in numerous committee meetings
+          - Assisted with fulfilling commitments made by the board of directors as assigned
+          - Attended weekly board meetings to go through the occurrences at the society as well as voting on bylaw changes
+          - Created plans and communicated deadlines to complete projects on time
 
     projects:
       - name: Whisperdesk

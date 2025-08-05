@@ -21,6 +21,7 @@ export interface CVExperience {
   spacing_after?: string;
   highlights?: string[]; // For backward compatibility
   positions?: CVPosition[]; // New format with multiple positions
+  show?: boolean; // Optional field to hide entries
 }
 
 export interface CVEducation {
@@ -31,6 +32,7 @@ export interface CVEducation {
   start_date: string;
   end_date: string;
   highlights: string[];
+  show?: boolean; // Optional field to hide entries
 }
 
 export interface CVVolunteer {
@@ -40,6 +42,8 @@ export interface CVVolunteer {
   start_date: string;
   end_date: string;
   highlights: string[];
+  show?: boolean; // Optional field to hide entries
+  spacing_after?: string;
 }
 
 export interface CVAward {
@@ -47,6 +51,7 @@ export interface CVAward {
   date: string;
   summary: string;
   highlights: string[];
+  show?: boolean; // Optional field to hide entries
 }
 
 export interface CVPresentation {
@@ -54,6 +59,7 @@ export interface CVPresentation {
   summary: string;
   location: string;
   date: string;
+  show?: boolean; // Optional field to hide entries
 }
 
 export interface CVPublication {
@@ -62,6 +68,7 @@ export interface CVPublication {
   journal: string;
   date: string;
   doi: string;
+  show?: boolean; // Optional field to hide entries
 }
 
 export interface CVProfessionalDevelopment {
@@ -69,6 +76,7 @@ export interface CVProfessionalDevelopment {
   location: string;
   date: string;
   summary: string;
+  show?: boolean; // Optional field to hide entries
 }
 
 export interface CVProject {
@@ -77,6 +85,7 @@ export interface CVProject {
   url?: string;
   summary: string;
   highlights: string[];
+  show?: boolean; // Optional field to hide entries
 }
 
 export interface CVSocial {
@@ -198,6 +207,11 @@ export const flattenExperienceData = (experiences: CVExperience[]): Array<{
   return flattened;
 };
 
+// Filter function to remove entries with show: false
+const filterHiddenEntries = <T extends { show?: boolean }>(entries: T[]): T[] => {
+  return entries.filter(entry => entry.show !== false);
+};
+
 // Get CV data from YAML file (this will be loaded at runtime)
 let cvDataCache: CVData | null = null;
 
@@ -222,7 +236,28 @@ export const getCVData = async (): Promise<CVData> => {
     }
     
     const yamlContent = await response.text();
-    cvDataCache = parseCVData(yamlContent);
+    const rawData = parseCVData(yamlContent);
+    
+    // Filter out entries with show: false
+    const filteredData: CVData = {
+      cv: {
+        ...rawData.cv,
+        sections: {
+          ...rawData.cv.sections,
+          experience: filterHiddenEntries(rawData.cv.sections.experience),
+          volunteer: filterHiddenEntries(rawData.cv.sections.volunteer),
+          projects: filterHiddenEntries(rawData.cv.sections.projects),
+          education: filterHiddenEntries(rawData.cv.sections.education),
+          awards: filterHiddenEntries(rawData.cv.sections.awards),
+          presentations: filterHiddenEntries(rawData.cv.sections.presentations),
+          publications: filterHiddenEntries(rawData.cv.sections.publications),
+          professional_development: filterHiddenEntries(rawData.cv.sections.professional_development),
+          certifications_and_skills: rawData.cv.sections.certifications_and_skills // This is string array, not objects
+        }
+      }
+    };
+    
+    cvDataCache = filteredData;
     return cvDataCache;
   } catch (error) {
     console.error('Error loading CV data:', error);
