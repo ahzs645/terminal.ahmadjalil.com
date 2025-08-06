@@ -30,6 +30,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
+      - name: Checkout private resume repo
+        uses: actions/checkout@v4
+        with:
+          repository: ahzs645/resume
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: resume-repo
+
+      - name: Copy YAML from private repo
+        run: cp resume-repo/Ahmad_Jalil_CV.yaml ./
+          
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
