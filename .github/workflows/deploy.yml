@@ -31,20 +31,29 @@ jobs:
         uses: actions/checkout@v4
         
       - name: Checkout private resume repo
+        if: ${{ secrets.RESUME_GITHUB_TOKEN }}
         uses: actions/checkout@v4
         with:
           repository: ahzs645/resume
-          token: ${{ secrets.RESUME_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.RESUME_GITHUB_TOKEN }}
           path: resume-repo
 
       - name: Copy YAML from private repo
+        if: ${{ secrets.RESUME_GITHUB_TOKEN }}
         run: |
           if [ -f resume-repo/Ahmad_Jalil_CV.yaml ]; then
             cp resume-repo/Ahmad_Jalil_CV.yaml ./
-            echo "Resume YAML copied from private repo"
+            echo "✅ Resume YAML copied from private repo"
           else
-            echo "Resume YAML not found in private repo, using local fallback"
+            echo "❌ Resume YAML not found in private repo"
+            exit 1
           fi
+
+      - name: Skip private repo (no token)
+        if: ${{ !secrets.RESUME_GITHUB_TOKEN }}
+        run: |
+          echo "⚠️ RESUME_GITHUB_TOKEN not set - skipping private repo checkout"
+          echo "📝 To fetch from private repo, add a Personal Access Token as RESUME_GITHUB_TOKEN secret"
           
       - name: Setup Node.js
         uses: actions/setup-node@v4
