@@ -10,8 +10,14 @@ interface UseCommandsReturn {
 }
 
 export const useCommands = (): UseCommandsReturn => {
-  const [commands, setCommands] = useState<Array<{ cmd: string; desc: string }>>([]);
-  const [commandMappings, setCommandMappings] = useState<CommandMapping[]>([]);
+  // Initialize with static commands immediately available
+  const [commands, setCommands] = useState<Array<{ cmd: string; desc: string }>>(() => {
+    const staticCommands = generateAvailableCommands(null); // This returns static commands
+    return convertToTerminalCommands(staticCommands);
+  });
+  const [commandMappings, setCommandMappings] = useState<CommandMapping[]>(() => {
+    return generateAvailableCommands(null); // This returns static commands
+  });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
