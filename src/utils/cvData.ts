@@ -222,9 +222,9 @@ export const getCVData = async (): Promise<CVData> => {
   }
 
   try {
-    console.log('Fetching CV data from /Ahmad_Jalil_CV.yaml');
+    console.log('Fetching CV data from /CV.yaml');
     // Try to fetch from the public directory first (which should contain the pre-fetched YAML)
-    let response = await fetch('/Ahmad_Jalil_CV.yaml');
+    let response = await fetch('/CV.yaml');
     
     console.log('Response status:', response.status, response.ok);
     

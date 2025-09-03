@@ -8,7 +8,7 @@ export const config = {
   RESUME_BRANCH: import.meta.env.VITE_RESUME_BRANCH || 'main',
   
   // Path to the YAML file within the repository
-  RESUME_FILE_PATH: import.meta.env.VITE_RESUME_FILE_PATH || 'Ahmad_Jalil_CV.yaml',
+  RESUME_FILE_PATH: import.meta.env.VITE_RESUME_FILE_PATH || 'CV.yaml',
   
   // GitHub Personal Access Token for private repositories
   // For private repos, create a token at: https://github.com/settings/tokens

@@ -12,7 +12,7 @@ const DownloadCV: React.FC = () => {
 
   // Use the dynamic PDF file name or fallback to the current file
   const pdfPath = `/${fileNames.pdfFileName}`;
-  const fallbackPath = "/Ahmad_Jalil_CV.pdf"; // Fallback to existing file
+  const fallbackPath = "/CV.pdf"; // Fallback to existing file
 
   React.useEffect(() => {
     if (rerender && currentCommand[0] === "download-cv" && currentCommand.length <= 1) {
