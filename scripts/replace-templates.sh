@@ -2,7 +2,7 @@
 
 # Script to replace template placeholders locally (mirrors GitHub Actions workflow)
 
-RESUME_FILE_PATH='Ahmad_Jalil_CV.yaml'
+RESUME_FILE_PATH='CV.yaml'
 
 echo "🔄 Starting template replacement..."
 

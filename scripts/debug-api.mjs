@@ -49,7 +49,7 @@ async function testRepoAccess() {
 // Test file access
 async function testFileAccess() {
   try {
-    const fileUrl = `https://api.github.com/repos/${RESUME_REPO}/contents/Ahmad_Jalil_CV.yaml`;
+    const fileUrl = `https://api.github.com/repos/${RESUME_REPO}/contents/CV.yaml`;
     const headers = {
       'Authorization': `token ${GITHUB_TOKEN}`,
       'Accept': 'application/vnd.github.v3+json',
