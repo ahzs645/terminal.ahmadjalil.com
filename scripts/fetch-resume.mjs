@@ -14,18 +14,18 @@ config({ path: path.join(__dirname, '..', '.env.local') });
 // Configuration from environment variables
 const RESUME_REPO = process.env.VITE_RESUME_REPO || 'ahzs645/resume';
 const RESUME_BRANCH = process.env.VITE_RESUME_BRANCH || 'main';
-const RESUME_FILE_PATH = process.env.VITE_RESUME_FILE_PATH || 'Ahmad_Jalil_CV.yaml';
-const RESUME_PDF_PATH = process.env.VITE_RESUME_PDF_PATH || 'Ahmad_Jalil_CV.pdf';
+const RESUME_FILE_PATH = process.env.VITE_RESUME_FILE_PATH || 'CV.yaml';
+const RESUME_PDF_PATH = process.env.VITE_RESUME_PDF_PATH || 'CV.pdf';
 // Support both custom token and GitHub Actions built-in token
 const GITHUB_TOKEN = process.env.VITE_GITHUB_TOKEN || process.env.GITHUB_TOKEN || '';
 const USE_LOCAL_FALLBACK = process.env.VITE_USE_LOCAL_FALLBACK !== 'false';
 
 // Paths
 const publicDir = path.join(__dirname, '..', 'public');
-const localYamlPath = path.join(__dirname, '..', 'Ahmad_Jalil_CV.yaml');
-const localPdfPath = path.join(__dirname, '..', 'Ahmad_Jalil_CV.pdf');
-const targetYamlPath = path.join(publicDir, 'Ahmad_Jalil_CV.yaml');
-const targetPdfPath = path.join(publicDir, 'Ahmad_Jalil_CV.pdf');
+const localYamlPath = path.join(__dirname, '..', 'CV.yaml');
+const localPdfPath = path.join(__dirname, '..', 'CV.pdf');
+const targetYamlPath = path.join(publicDir, 'CV.yaml');
+const targetPdfPath = path.join(publicDir, 'CV.pdf');
 
 // GitHub URLs
 const githubRawUrl = `https://raw.githubusercontent.com/${RESUME_REPO}/${RESUME_BRANCH}/${RESUME_FILE_PATH}`;
