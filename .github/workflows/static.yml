@@ -50,6 +50,31 @@ jobs:
           else
             echo "❌ Resume YAML not found in private repo - using local fallback"
           fi
+          
+      - name: Ensure CV.yaml exists
+        run: |
+          if [ ! -f CV.yaml ]; then
+            echo "❌ CV.yaml not found, creating minimal fallback..."
+            echo "cv:" > CV.yaml
+            echo "  name: Ahmad Jalil" >> CV.yaml
+            echo "  location: Prince George, BC" >> CV.yaml
+            echo "  email: me@ahmadjalil.com" >> CV.yaml
+            echo "  phone: +1-778-267-9144" >> CV.yaml
+            echo "  website: https://ahmadjalil.com" >> CV.yaml
+            echo "  sections:" >> CV.yaml
+            echo "    experience: []" >> CV.yaml
+            echo "    education: []" >> CV.yaml
+            echo "    volunteer: []" >> CV.yaml
+            echo "    projects: []" >> CV.yaml
+            echo "    awards: []" >> CV.yaml
+            echo "    presentations: []" >> CV.yaml
+            echo "    publications: []" >> CV.yaml
+            echo "    professional_development: []" >> CV.yaml
+            echo "    certifications_and_skills: []" >> CV.yaml
+            echo "✅ Created fallback CV.yaml"
+          else
+            echo "✅ CV.yaml exists"
+          fi
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
