@@ -41,9 +41,12 @@ jobs:
 
       - name: Copy YAML from private repo
         run: |
-          if [ -f resume-repo/Ahmad_Jalil_CV.yaml ]; then
-            cp resume-repo/Ahmad_Jalil_CV.yaml ./
-            echo "✅ Resume YAML copied from private repo"
+          if [ -f resume-repo/CV.yaml ]; then
+            cp resume-repo/CV.yaml ./
+            echo "✅ Resume YAML copied from private repo (CV.yaml)"
+          elif [ -f resume-repo/Ahmad_Jalil_CV.yaml ]; then
+            cp resume-repo/Ahmad_Jalil_CV.yaml ./CV.yaml
+            echo "✅ Resume YAML copied from private repo (Ahmad_Jalil_CV.yaml -> CV.yaml)"
           else
             echo "❌ Resume YAML not found in private repo - using local fallback"
           fi
@@ -64,15 +67,16 @@ jobs:
       # CRITICAL: Copy YAML file to public directory before build
       - name: Copy CV YAML to public directory
         run: |
-          echo "Copying Ahmad_Jalil_CV.yaml to public directory..."
-          cp Ahmad_Jalil_CV.yaml public/Ahmad_Jalil_CV.yaml
+          echo "Copying CV.yaml to public directory..."
+          cp CV.yaml public/CV.yaml
           echo "Verifying file was copied:"
-          ls -la public/Ahmad_Jalil_CV.yaml
+          ls -la public/CV.yaml
         
       # Replace template placeholders in index.html before build
+            # Replace template placeholders in index.html before build
       - name: Replace template placeholders
         env:
-          RESUME_FILE_PATH: 'Ahmad_Jalil_CV.yaml'
+          RESUME_FILE_PATH: 'CV.yaml'
         run: |
           # Read the CV YAML file and extract name and location
           if [ -f "$RESUME_FILE_PATH" ]; then
@@ -103,7 +107,7 @@ jobs:
       - name: Verify YAML in build output
         run: |
           echo "Checking if YAML file exists in dist directory:"
-          ls -la dist/Ahmad_Jalil_CV.yaml || echo "YAML file not found in dist!"
+          ls -la dist/CV.yaml || echo "YAML file not found in dist!"
         
       - name: Add CNAME file
         run: echo "terminal.ahmadjalil.com" > ./dist/CNAME
