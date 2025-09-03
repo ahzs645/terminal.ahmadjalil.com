@@ -250,15 +250,15 @@ export const getCVData = async (): Promise<CVData> => {
         ...rawData.cv,
         sections: {
           ...rawData.cv.sections,
-          experience: filterHiddenEntries(rawData.cv.sections.experience),
-          volunteer: filterHiddenEntries(rawData.cv.sections.volunteer),
-          projects: filterHiddenEntries(rawData.cv.sections.projects),
-          education: filterHiddenEntries(rawData.cv.sections.education),
-          awards: filterHiddenEntries(rawData.cv.sections.awards),
-          presentations: filterHiddenEntries(rawData.cv.sections.presentations),
-          publications: filterHiddenEntries(rawData.cv.sections.publications),
-          professional_development: filterHiddenEntries(rawData.cv.sections.professional_development),
-          certifications_and_skills: rawData.cv.sections.certifications_and_skills // This is string array, not objects
+          experience: filterHiddenEntries(rawData.cv.sections.experience || []),
+          volunteer: filterHiddenEntries(rawData.cv.sections.volunteer || []),
+          projects: filterHiddenEntries(rawData.cv.sections.projects || []),
+          education: filterHiddenEntries(rawData.cv.sections.education || []),
+          awards: filterHiddenEntries(rawData.cv.sections.awards || []),
+          presentations: filterHiddenEntries(rawData.cv.sections.presentations || []),
+          publications: filterHiddenEntries(rawData.cv.sections.publications || []),
+          professional_development: filterHiddenEntries(rawData.cv.sections.professional_development || []),
+          certifications_and_skills: rawData.cv.sections.certifications_and_skills || (rawData.cv.sections as any).certifications_skills || [] // Handle both naming conventions
         }
       }
     };
