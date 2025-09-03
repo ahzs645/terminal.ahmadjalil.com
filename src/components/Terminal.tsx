@@ -19,35 +19,15 @@ import {
   Wrapper,
 } from "./styles/Terminal.styled";
 import { argTab } from "../utils/funcs";
+import { useCommandsContext } from "../contexts/CommandsContext";
 
 type Command = {
   cmd: string;
   desc: string;
 }[];
 
-export const commands: Command = [
-  { cmd: "about", desc: "about Ahmad Jalil" },
-  { cmd: "awards", desc: "view awards and achievements" },
-  { cmd: "clear", desc: "clear the terminal" },
-  { cmd: "cv", desc: "view CV overview" },
-  { cmd: "download-cv", desc: "download Ahmad Jalil's CV (PDF)" },
-  { cmd: "echo", desc: "print out anything" },
-  { cmd: "education", desc: "my education background" },
-  { cmd: "email", desc: "send an email to me" },
-  { cmd: "experience", desc: "my work experience" },
-  { cmd: "gui", desc: "go to my portfolio in GUI" },
-  { cmd: "help", desc: "check available commands" },
-  { cmd: "history", desc: "view command history" },
-  { cmd: "professional", desc: "my professional development" },
-  { cmd: "projects", desc: "view projects that I've coded" },
-  { cmd: "publications", desc: "my published research papers" },
-  { cmd: "pwd", desc: "print current working directory" },
-  { cmd: "socials", desc: "check out my social accounts" },
-  { cmd: "themes", desc: "check available themes" },
-  { cmd: "volunteer", desc: "my volunteer experience" },
-  { cmd: "welcome", desc: "display hero section" },
-  { cmd: "whoami", desc: "about current user" },
-];
+// Export commands for backward compatibility (will be populated by context)
+export let commands: Command = [];
 
 type Term = {
   arg: string[];
@@ -65,6 +45,7 @@ export const termContext = createContext<Term>({
 });
 
 const Terminal = () => {
+  const { commands: dynamicCommands, isLoading } = useCommandsContext();
   const containerRef = useRef(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -73,6 +54,11 @@ const Terminal = () => {
   const [rerender, setRerender] = useState(false);
   const [hints, setHints] = useState<string[]>([]);
   const [pointer, setPointer] = useState(-1);
+
+  // Update the global commands variable for backward compatibility
+  useEffect(() => {
+    commands = dynamicCommands;
+  }, [dynamicCommands]);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -119,7 +105,7 @@ const Terminal = () => {
       if (!inputVal) return;
 
       let hintsCmds: string[] = [];
-      commands.forEach(({ cmd }) => {
+      dynamicCommands.forEach(({ cmd }) => {
         if (_.startsWith(cmd, inputVal)) {
           hintsCmds = [...hintsCmds, cmd];
         }

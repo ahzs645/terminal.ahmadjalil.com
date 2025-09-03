@@ -8,8 +8,11 @@ import {
   PreWrapper,
   Seperator,
 } from "../styles/Welcome.styled";
+import { useTerminalConfig } from "../../hooks/useTerminalConfig";
 
 const Welcome: React.FC = () => {
+  const { config } = useTerminalConfig();
+  
   return (
     <HeroContainer data-testid="welcome">
       <div className="info-section">
@@ -45,11 +48,11 @@ const Welcome: React.FC = () => {
           `}
           </PreNameMobile>
         </PreWrapper>
-        <div>Welcome to my terminal portfolio. (Version 1.3.1)</div>
+        <div>Welcome to my terminal portfolio. (Version {config.version})</div>
         <Seperator>----</Seperator>
         <div>
           This project's source code can be found in this project's{" "}
-          <Link href="https://github.com/ahzs645/terminal.ahmadjalil.com">
+          <Link href={config.repositoryUrl}>
             GitHub repo
           </Link>
           .

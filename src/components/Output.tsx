@@ -21,6 +21,8 @@ import Themes from "./commands/Themes";
 import { OutputContainer, UsageDiv } from "./styles/Output.styled";
 import { termContext } from "./Terminal";
 import { useContext } from "react";
+import { useCommandsContext } from "../contexts/CommandsContext";
+import { useTerminalConfig } from "../hooks/useTerminalConfig";
 
 type Props = {
   index: number;
@@ -29,6 +31,15 @@ type Props = {
 
 const Output: React.FC<Props> = ({ index, cmd }) => {
   const { arg } = useContext(termContext);
+  const { commands } = useCommandsContext();
+  const { config } = useTerminalConfig();
+
+  // Check if the command is available
+  const isCommandAvailable = commands.some(command => command.cmd === cmd);
+  
+  if (!isCommandAvailable) {
+    return <UsageDiv data-testid="usage-output">Command '{cmd}' not found</UsageDiv>;
+  }
 
   const specialCmds = ["projects", "socials", "themes", "echo", "experience", "awards", "volunteer", "education", "professional"];
 
@@ -56,12 +67,12 @@ const Output: React.FC<Props> = ({ index, cmd }) => {
           professional: <ProfessionalDevelopment />,
           projects: <Projects />,
           publications: <Publications />,
-          pwd: <GeneralOutput>/home/ahzs645</GeneralOutput>,
+          pwd: <GeneralOutput>{config.homeDirectory}</GeneralOutput>,
           socials: <Socials />,
           themes: <Themes />,
           volunteer: <Volunteer />,
           welcome: <Welcome />,
-          whoami: <GeneralOutput>visitor</GeneralOutput>,
+          whoami: <GeneralOutput>{config.username}</GeneralOutput>,
         }[cmd]
       }
     </OutputContainer>

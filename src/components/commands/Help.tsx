@@ -5,12 +5,22 @@ import {
   HelpWrapper,
   KeyContainer,
 } from "../styles/Help.styled";
-import { commands } from "../Terminal";
+import { useCommandsContext } from "../../contexts/CommandsContext";
 import { generateTabs } from "../../utils/funcs";
 
 const Help: React.FC = () => {
+  const { commands, isLoading } = useCommandsContext();
+  
   // Find the longest command name to calculate proper alignment
   const maxCmdLength = Math.max(...commands.map(({ cmd }) => cmd.length));
+  
+  if (isLoading) {
+    return (
+      <HelpWrapper data-testid="help">
+        <div>Loading available commands...</div>
+      </HelpWrapper>
+    );
+  }
   
   return (
     <HelpWrapper data-testid="help">

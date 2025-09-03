@@ -1,9 +1,12 @@
 import { User, WebsiteName, Wrapper } from "./styles/TerminalInfo.styled";
+import { useTerminalConfig } from "../hooks/useTerminalConfig";
 
 const TermInfo = () => {
+  const { config } = useTerminalConfig();
+  
   return (
     <Wrapper>
-      <User>visitor</User>@<WebsiteName>terminal.ahmadjalil.com</WebsiteName>:~$
+      <User>{config.username}</User>@<WebsiteName>{config.hostname}</WebsiteName>:~$
     </Wrapper>
   );
 };

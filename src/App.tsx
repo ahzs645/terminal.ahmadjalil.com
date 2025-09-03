@@ -3,6 +3,7 @@ import { DefaultTheme, ThemeProvider } from "styled-components";
 import { useTheme } from "./hooks/useTheme";
 import GlobalStyle from "./components/styles/GlobalStyle";
 import Terminal from "./components/Terminal";
+import { CommandsProvider } from "./contexts/CommandsContext";
 
 export const themeContext = createContext<
   ((switchTheme: DefaultTheme) => void) | null
@@ -57,9 +58,11 @@ function App() {
       {themeLoaded && (
         <ThemeProvider theme={selectedTheme}>
           <GlobalStyle />
-          <themeContext.Provider value={themeSwitcher}>
-            <Terminal />
-          </themeContext.Provider>
+          <CommandsProvider>
+            <themeContext.Provider value={themeSwitcher}>
+              <Terminal />
+            </themeContext.Provider>
+          </CommandsProvider>
         </ThemeProvider>
       )}
     </>

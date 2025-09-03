@@ -217,12 +217,16 @@ let cvDataCache: CVData | null = null;
 
 export const getCVData = async (): Promise<CVData> => {
   if (cvDataCache) {
+    console.log('Using cached CV data:', cvDataCache.cv.email);
     return cvDataCache;
   }
 
   try {
+    console.log('Fetching CV data from /Ahmad_Jalil_CV.yaml');
     // Try to fetch from the public directory first (which should contain the pre-fetched YAML)
     let response = await fetch('/Ahmad_Jalil_CV.yaml');
+    
+    console.log('Response status:', response.status, response.ok);
     
     // If that fails and we're in development, try fetching directly from GitHub
     if (!response.ok && import.meta.env.DEV) {
@@ -236,7 +240,9 @@ export const getCVData = async (): Promise<CVData> => {
     }
     
     const yamlContent = await response.text();
+    console.log('YAML content length:', yamlContent.length);
     const rawData = parseCVData(yamlContent);
+    console.log('Parsed CV data email:', rawData.cv.email);
     
     // Filter out entries with show: false
     const filteredData: CVData = {
@@ -257,12 +263,13 @@ export const getCVData = async (): Promise<CVData> => {
       }
     };
     
+    console.log('Final filtered data email:', filteredData.cv.email);
     cvDataCache = filteredData;
     return cvDataCache;
   } catch (error) {
-    console.error('Error loading CV data:', error);
+    console.error('Error loading CV data, using fallback:', error);
     // Fallback to empty structure if loading fails
-    return {
+    const fallbackData = {
       cv: {
         name: 'Ahmad Jalil',
         location: 'Prince George, BC',
@@ -282,5 +289,7 @@ export const getCVData = async (): Promise<CVData> => {
         }
       }
     };
+    console.log('Using fallback data with email:', fallbackData.cv.email);
+    return fallbackData;
   }
 };
